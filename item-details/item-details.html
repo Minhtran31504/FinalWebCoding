@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Amor Huy Anh - Chi tiết món ăn</title>
+  <link rel="stylesheet" href="item-details.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-left">
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="#" class="nav-link">Events</a>
+        <a href="#" class="nav-link">About Us</a>
+      </div>
+
+      <a href="../index.html" class="logo">
+        <h1>EL AMOR HUY ANH</h1>
+        <p>RESTAURANT</p>
+      </a>
+
+      <div class="nav-right">
+        <a href="#" class="nav-link">Reservation</a>
+        <a href="#" class="nav-link">Orders</a>
+        <a href="#" class="nav-link">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Social Icons -->
+  <div class="social-icons">
+    <div class="social-icon">
+      <div>
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+    <div class="social-icon">
+      <div>
+        <i class="fas fa-heart"></i>
+      </div>
+    </div>
+    <div class="social-icon">
+      <div>
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+    </div>
+    <div class="social-icon">
+      <div>
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item Details Section -->
+  <div class="container">
+    <div class="item-details">
+      <div class="back-button">
+        <a href="../menu/menu.html"><i class="fas fa-arrow-left"></i></a>
+      </div>
+      
+      <div class="item-details-content">
+        <div class="item-image">
+          <img src="" alt="Món ăn" id="item-image">
+        </div>
+        
+        <div class="item-info">
+          <div class="bon-appetit">Buon Appetito!</div>
+          <h1 id="item-name">Risotto Ai Funghi</h1>
+          
+          <div class="item-rating">
+            <span class="stars">★★★★★</span>
+            <span class="price" id="item-price">$24</span>
+          </div>
+          
+          <div class="item-description" id="item-description">
+            Creamy Arborio rice infused with a medley of wild mushrooms, Parmesan cheese, and a hint of truffle oil. 
+            This exquisite dish promises a symphony of flavors, meticulously crafted to elevate your dining experience. 
+            Immerse yourself in the taste of Italy, one delightful spoonful at a time.
+          </div>
+          
+          <div class="quantity-selector">
+            <button class="quantity-btn minus-btn">-</button>
+            <input type="text" class="quantity-input" value="1" readonly>
+            <button class="quantity-btn plus-btn">+</button>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="share-btn">
+              <i class="fas fa-share-alt"></i>
+            </button>
+            <button class="favorite-btn">
+              <i class="far fa-heart"></i>
+            </button>
+            <button class="order-btn">ORDER NOW</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <!-- Footer Navigation -->
+      <div class="footer-nav">
+        <a href="menu.html">Menu</a>
+        <a href="#events">Events</a>
+        <a href="#about">About US</a>
+        <a href="#reservation">Reservation</a>
+        <a href="#order">Order</a>
+        <a href="#contact">Contact us</a>
+      </div>
+
+      <!-- Restaurant Description -->
+      <div class="restaurant-description">
+        <p>
+          Discover the vibrant flavors of Mexico right here in Vietnam at El Amor Huy Anh. We are dedicated to providing
+          an
+          authentic dining experience with our carefully crafted dishes made from the freshest ingredients. Join us for
+          a culinary
+          adventure that celebrates the rich traditions of Mexican cuisine. We look forward to welcoming you!
+        </p>
+      </div>
+
+      <!-- Business Hours -->
+      <div class="footer-hours">
+        <p>SUNDAY - THURSDAY: 11:30AM - 11PM | FRIDAY & SATURDAY: 11:30AM - 12AM</p>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="footer-cta">
+        <a href="#reservation" class="btn btn-light btn-rounded">RESERVE NOW</a>
+        <a href="#contact" class="btn btn-outline btn-rounded">CONTACT US</a>
+      </div>
+
+      <!-- Social Media -->
+      <div class="social-media">
+        <a href="#" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="copyright">
+        <p>COPYRIGHT©ELAMORHUYANH 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="item-details.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - El Amor Huy Anh Restaurant</title>
+    <link rel="stylesheet" href="payment.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Copy từ reservation.html -->
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="payment-container">
+            <div class="order-summary">
+                <h2>Your Order</h2>
+                <div class="order-items">
+                    <!-- Order items sẽ được thêm bằng JavaScript -->
+                </div>
+                <div class="order-total">
+                    <div class="subtotal">
+                        <span>Sub Total</span>
+                        <span class="amount">$14</span>
+                    </div>
+                    <div class="total">
+                        <span>Total</span>
+                        <span class="amount">$14</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delivery-options">
+                <h2>Delivery Type</h2>
+                <div class="delivery-types">
+                    <label class="delivery-option">
+                        <input type="radio" name="delivery" value="delivery">
+                        <span class="option-label">
+                            <i class="fas fa-truck"></i>
+                            Delivery
+                        </span>
+                    </label>
+                    <label class="delivery-option">
+                        <input type="radio" name="delivery" value="pickup">
+                        <span class="option-label">
+                            <i class="fas fa-store"></i>
+                            Pick Up
+                        </span>
+                    </label>
+                    <label class="delivery-option">
+                        <input type="radio" name="delivery" value="dine-in">
+                        <span class="option-label">
+                            <i class="fas fa-utensils"></i>
+                            Eat In
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <h2>Payment</h2>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="cash">
+                        <span class="option-label">
+                            <i class="fas fa-money-bill"></i>
+                            Cash payment
+                        </span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="card">
+                        <span class="option-label">
+                            <i class="fas fa-credit-card"></i>
+                            Card payment
+                        </span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="vnpay">
+                        <span class="option-label">
+                            <img src="../images/vnpay-logo.png" alt="VN Pay">
+                            VN pay
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="paymentForm" class="payment-form hidden">
+                <!-- Payment form sẽ được thêm bằng JavaScript -->
+            </div>
+
+            <div id="messageBox" class="message-box hidden">
+                <!-- Message sẽ được thêm bằng JavaScript -->
+            </div>
+
+            <button id="checkoutBtn" class="checkout-btn">CHECK OUT</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Copy từ reservation.html -->
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="payment.js"></script>
+</body>
+</html>
