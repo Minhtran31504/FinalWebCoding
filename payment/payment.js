@@ -248,7 +248,6 @@ $(document).ready(function() {
         const index = $(this).data('index');
         cart[index].quantity++;
         updateCartItem(index);
-        showToast("Quantity updated", "success");
     });
     
     // Xử lý sự kiện giảm số lượng
@@ -257,7 +256,6 @@ $(document).ready(function() {
         if (cart[index].quantity > 1) {
             cart[index].quantity--;
             updateCartItem(index);
-            showToast("Quantity updated", "success");
         } else {
             showToast("Minimum quantity is 1", "warning");
         }
