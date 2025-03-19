@@ -960,7 +960,7 @@ $(document).ready(function() {
             const itemDesc = $item.find('.menu-item-description').text().toLowerCase();
             
             if (itemName.includes(searchTerm) || itemDesc.includes(searchTerm)) {
-                $item.show();
+                $item.show().css('opacity', 0).animate({ opacity: 1 }, 500); // Thêm hiệu ứng fade-in
                 $item.addClass('search-match');
                 
                 // Highlight từ khóa tìm kiếm
@@ -979,7 +979,7 @@ $(document).ready(function() {
             }
         });
         
-        // Hiển thị thông báo không có kết quả nếu cần
+        // Hiển thị/ẩn thông báo không có kết quả
         if (matchCount === 0) {
             $('.no-results-msg').show();
             $('.no-results-text').text(
@@ -1085,10 +1085,10 @@ $(document).ready(function() {
         const category = $(this).data('category');
         
         if (category === 'all') {
-            $('.menu-section').show();
+            $('.menu-section').show().css('opacity', 0).animate({ opacity: 1 }, 500); // Hiển thị tất cả với hiệu ứng
         } else {
             $('.menu-section').hide();
-            $(`#${category}`).show();
+            $(`#${category}`).show().css('opacity', 0).animate({ opacity: 1 }, 500); // Hiển thị tab cụ thể với hiệu ứng
         }
     });
 

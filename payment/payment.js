@@ -165,6 +165,12 @@ $(document).ready(function() {
             return;
         }
         
+        // Validate delivery address nếu người dùng chọn delivery
+        if (selectedDelivery === 'delivery' && !validateDeliveryAddress()) {
+            showToast("Please enter delivery address", "warning");
+            return;
+        }
+        
         // Kiểm tra trường hợp không hợp lệ: delivery + cash
         if (selectedDelivery === 'delivery' && selectedPayment === 'cash') {
             showToast("Cash payment is not available for delivery orders. Please select another payment method.", "error");
@@ -432,6 +438,23 @@ $(document).ready(function() {
             // Chỉ để demo, trong thực tế không nên lưu thông tin thẻ trong localStorage
             showToast("Payment information will be remembered for future use", "info");
         }
+    });
+
+    // Thêm hàm validate delivery address
+    function validateDeliveryAddress() {
+        if (selectedDelivery === 'delivery') {
+            const deliveryAddress = $('#deliveryAddressForm input').val().trim();
+            if (!deliveryAddress) {
+                $('#deliveryAddressForm input').addClass('error');
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Xử lý input địa chỉ khi thay đổi để xóa trạng thái lỗi
+    $('#deliveryAddressForm input').on('input', function() {
+        $(this).removeClass('error');
     });
 
     // Xử lý khi thay đổi loại thẻ

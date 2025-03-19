@@ -11,6 +11,7 @@ body {
     background-color: #ffffff;
     color: #333;
     line-height: 1.6;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .container {
@@ -999,5 +1000,15 @@ body {
 
     .testimonial-item {
         padding: 0 20px;
+    }
+}
+
+/* Thêm hiệu ứng animation cho body */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

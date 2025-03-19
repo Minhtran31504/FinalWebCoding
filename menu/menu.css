@@ -10,6 +10,7 @@ body {
     background-color: #ffffff;
     color: #333;
     line-height: 1.6;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .container {
@@ -145,8 +146,14 @@ body {
 }
 
 @keyframes slideIn {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Search Bar Enhancements */
@@ -298,10 +305,9 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: slideIn 0.5s ease-out;
 }
 
 .menu-item-image {
@@ -789,4 +795,14 @@ body {
     background-color: rgba(226, 200, 122, 0.3);
     padding: 2px 0;
     border-radius: 2px;
+}
+
+/* Thêm hiệu ứng fade-in cho body */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
