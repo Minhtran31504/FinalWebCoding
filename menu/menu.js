@@ -1,23 +1,116 @@
 $(document).ready(function() {
     // Menu data
     const menuData = {
-        appetizers: Array(6).fill(null).map((_, i) => ({
-            id: i + 1,
-            name: {
-                vi: "Risotto nấm",
-                us: "Risotto di Funghi"
-            },
-            description: {
-                vi: "Cơm Arborio béo ngậy hòa quyện với hỗn hợp nấm rừng, phô mai Parmesan và một chút dầu nấm truffle",
-                us: "Creamy Arborio rice infused with a medley of wild mushrooms, Parmesan cheese, and a hint of truffle oil"
-            },
-            price: {
-                vnd: 600000,
-                usd: 24
-            },
-            image: "https://via.placeholder.com/150",
-            rating: 4.6
-        })),
+        appetizers: [
+            {
+                "id": 1,
+                "name": {
+                  "vi": "Elote",
+                  "us": "Elote"
+                },
+                "description": {
+                  "vi": "Ngô nướng trên lõi được phết bơ và sốt mayonnaise, sau đó rắc phô mai Cotija vụn và bột ớt. Hoàn thiện với một chút nước cốt chanh tươi, món ăn vặt đường phố cổ điển này mang đến sự kết hợp hoàn hảo của hương vị kem, chua và cay.",
+                  "us": "Grilled corn on the cob slathered in butter and mayonnaise, then generously sprinkled with crumbled Cotija cheese and dusted with chili powder. Finished off with a squeeze of fresh lime juice, this classic street snack offers a perfect blend of creamy, tangy, and spicy flavors."
+                },
+                "price": {
+                  "vnd": 70000,
+                  "usd": 2.75
+                },
+                "image": "../images/menu/appetizers/Elote.jpg",
+                "rating": 4.7,
+                "calories": 325
+              },
+              {
+                "id": 2,
+                "name": {
+                  "vi": "Sopes",
+                  "us": "Sopes"
+                },
+                "description": {
+                  "vi": "Bánh ngô dày, nhỏ có viền cao, giòn bên ngoài và mềm bên trong. Chúng thường được phủ đậu nghiền, thịt hoặc gà xé, rau diếp tươi, phô mai vụn và hoàn thiện với nước sốt salsa và một chút kem chua. Mỗi miếng mang đến sự pha trộn tuyệt vời của kết cấu và hương vị.",
+                  "us": "Thick, small corn cakes with raised edges that are crisp on the outside and soft on the inside. They are typically topped with refried beans, shredded meat or chicken, fresh lettuce, crumbled cheese, and finished with a drizzle of salsa and a dollop of sour cream. Each bite delivers a delightful mix of textures and flavors."
+                },
+                "price": {
+                  "vnd": 75000,
+                  "usd": 2.95
+                },
+                "image": "../images/menu/appetizers/Sopes.jpg",
+                "rating": 4.6,
+                "calories": 375
+              },
+              {
+                "id": 3,
+                "name": {
+                  "vi": "Empanadas",
+                  "us": "Empanadas"
+                },
+                "description": {
+                  "vi": "Túi bánh vỏ giòn, vàng óng nhân hỗn hợp mặn có thể bao gồm thịt bò xay gia vị, gà xé, phô mai hoặc rau củ. Chúng được nướng hoặc chiên cho đến khi hoàn hảo giòn, mang lại vị giòn thỏa mãn với mỗi miếng cắn.",
+                  "us": "Golden, flaky pastry pockets filled with a savory mixture that can include spiced ground beef, shredded chicken, cheese, or vegetables. They are either baked or fried until perfectly crispy, offering a satisfying crunch with every bite."
+                },
+                "price": {
+                  "vnd": 65000,
+                  "usd": 2.55
+                },
+                "image": "../images/menu/appetizers/Empanadas.jpg",
+                "rating": 4.8,
+                "calories": 275
+              },
+              {
+                "id": 4,
+                "name": {
+                  "vi": "Tostadas",
+                  "us": "Tostadas"
+                },
+                "description": {
+                  "vi": "Bánh ngô giòn, phẳng chiên làm nền cho các loại nhân như đậu nghiền, gà hoặc thịt bò xé, rau diếp tươi, cà chua, và phô mai vụn. Một chút kem chua kết hợp tất cả các hương vị, tạo nên một món ăn giòn và thơm ngon vừa thỏa mãn vừa đầy hương vị.",
+                  "us": "Crisp, flat-fried tortillas that serve as the base for toppings such as refried beans, shredded chicken or beef, fresh lettuce, tomatoes, and crumbled cheese. A dollop of sour cream ties all the flavors together, creating a crunchy and savory dish that is as satisfying as it is flavorful."
+                },
+                "price": {
+                  "vnd": 80000,
+                  "usd": 3.15
+                },
+                "image": "../images/menu/appetizers/Tostadas.jpg",
+                "rating": 4.5,
+                "calories": 425
+              },
+              {
+                "id": 5,
+                "name": {
+                  "vi": "Taquitos",
+                  "us": "Taquitos"
+                },
+                "description": {
+                  "vi": "Bánh tortilla cuộn với nhân thịt thơm (bò hoặc gà) được chiên sâu cho đến khi vàng giòn. Những món ăn nhỏ này được phục vụ kèm với guacamole chua hoặc salsa để chấm, làm cho chúng trở thành món ăn nhẹ vui miệng và đầy hương vị.",
+                  "us": "Rolled tortillas filled with seasoned, shredded meat (beef or chicken) that are deep-fried until golden and crispy. These bite-sized delights are served with a side of tangy guacamole or salsa for dipping, making them a fun and flavorful snack."
+                },
+                "price": {
+                  "vnd": 70000,
+                  "usd": 2.75
+                },
+                "image": "../images/menu/appetizers/Taquitos.jpg",
+                "rating": 4.6,
+                "calories": 325
+              },
+              {
+                "id": 6,
+                "name": {
+                  "vi": "Ceviche",
+                  "us": "Ceviche"
+                },
+                "description": {
+                  "vi": "Món ăn nhẹ và sảng khoái với hải sản tươi (thường là cá hoặc tôm) ngâm trong nước cốt chanh. Trộn với hành thái nhỏ, cà chua cắt hạt lựu, ớt, và rau mùi tươi, món khai vị mát lạnh này mang đến hương vị chua, thanh và hơi cay hoàn hảo cho món khai vị.",
+                  "us": "A light and refreshing dish featuring fresh seafood (typically fish or shrimp) marinated in lime juice. Mixed with finely chopped onions, diced tomatoes, chili peppers, and fresh cilantro, this chilled delicacy offers a zesty, tangy, and slightly spicy flavor profile perfect for a starter."
+                },
+                "price": {
+                  "vnd": 85000,
+                  "usd": 3.35
+                },
+                "image": "../images/menu/appetizers/Ceviche.jpg",
+                "rating": 4.9,
+                "calories": 175
+              }
+        ],
         mainCourses: [
             {
                 id: 1,
@@ -33,7 +126,7 @@ $(document).ready(function() {
                     vnd: 85000,
                     usd: 3.35
                 },
-                image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Tacos al Pastor.jpg",
                 rating: 4.8
             },
             {
@@ -50,7 +143,7 @@ $(document).ready(function() {
                     vnd: 80000,
                     usd: 3.15
                 },
-                image: "https://images.unsplash.com/photo-1618040996337-56904b7850b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Quesadilla.jpg",
                 rating: 4.6
             },
             {
@@ -67,7 +160,7 @@ $(document).ready(function() {
                     vnd: 95000,
                     usd: 3.75
                 },
-                image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/mainCourses/Burrito.jpg",
                 rating: 4.7
             },
             {
@@ -84,7 +177,7 @@ $(document).ready(function() {
                     vnd: 70000,
                     usd: 2.75
                 },
-                image: "https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/mainCourses/Guacamole with Nachos.jpg",
                 rating: 4.5
             },
             {
@@ -101,7 +194,7 @@ $(document).ready(function() {
                     vnd: 90000,
                     usd: 3.55
                 },
-                image: "https://images.unsplash.com/photo-1617918160302-7c394f905b9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Tamales.jpg",
                 rating: 4.4
             },
             {
@@ -118,7 +211,7 @@ $(document).ready(function() {
                     vnd: 120000,
                     usd: 4.70
                 },
-                image: "https://images.unsplash.com/photo-1562059390-a761a084768e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1419&q=80",
+                image: "../images/menu/mainCourses/Chiles en Nogada.jpg",
                 rating: 4.9
             },
             {
@@ -135,7 +228,7 @@ $(document).ready(function() {
                     vnd: 140000,
                     usd: 5.50
                 },
-                image: "https://images.unsplash.com/photo-1562967915-92ae0c320a01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Pozole.jpg",
                 rating: 4.7
             },
             {
@@ -152,7 +245,7 @@ $(document).ready(function() {
                     vnd: 120000,
                     usd: 4.70
                 },
-                image: "https://images.unsplash.com/photo-1534352956036-cd81e27dd615?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Enchiladas.jpg",
                 rating: 4.6
             },
             {
@@ -169,24 +262,24 @@ $(document).ready(function() {
                     vnd: 175000,
                     usd: 6.90
                 },
-                image: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Mole Poblano.jpg",
                 rating: 4.8
             },
             {
                 id: 10,
                 name: {
                     vi: "Bắp Mexico",
-                    us: "Mexican Corn"
+                    us: "Elote"
                 },
                 description: {
                     vi: "Bắp nướng thơm phức, từng hạt bắp căng mọng, ngọt tự nhiên, phủ mayonnaise béo ngậy, phô mai mặn nhẹ và một chút bột ớt cay kích thích vị giác ngay từ miếng đầu tiên.",
-                    us: "Fragrant grilled corn, each grain of corn is plump, naturally sweet, covered with fatty mayonnaise, lightly salty cheese and a little spicy chili powder that stimulates the taste buds right from the first bite."
+                    us: "Fresh corn grilled to perfection, smothered in creamy mayonnaise, salty cotija cheese, and spicy chili powder. The sweet and juicy corn kernels contrast delightfully with the creamy, tangy, and spicy toppings, offering a vibrant and enjoyable snack."
                 },
                 price: {
                     vnd: 65000,
                     usd: 2.55
                 },
-                image: "https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Elote.jpg",
                 rating: 4.3
             },
             {
@@ -203,7 +296,7 @@ $(document).ready(function() {
                     vnd: 120000,
                     usd: 4.70
                 },
-                image: "https://images.unsplash.com/photo-1632789395770-20e6f63be806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Ceviche.jpg",
                 rating: 4.5
             },
             {
@@ -220,7 +313,7 @@ $(document).ready(function() {
                     vnd: 95000,
                     usd: 3.75
                 },
-                image: "https://images.unsplash.com/photo-1640719028782-8230f1bdc42a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Chilaquiles.jpg",
                 rating: 4.4
             },
             {
@@ -237,7 +330,7 @@ $(document).ready(function() {
                     vnd: 90000,
                     usd: 3.55
                 },
-                image: "https://images.unsplash.com/photo-1611250188496-e966043a0629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80",
+                image: "../images/menu/mainCourses/Tostadas.jpg",
                 rating: 4.3
             },
             {
@@ -254,7 +347,7 @@ $(document).ready(function() {
                     vnd: 120000,
                     usd: 4.70
                 },
-                image: "https://images.unsplash.com/photo-1593030911380-a9ef8812d72c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Carnitas.jpg",
                 rating: 4.7
             },
             {
@@ -271,7 +364,7 @@ $(document).ready(function() {
                     vnd: 135000,
                     usd: 5.30
                 },
-                image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
+                image: "../images/menu/mainCourses/Fajitas.jpg",
                 rating: 4.6
             },
             {
@@ -288,14 +381,14 @@ $(document).ready(function() {
                     vnd: 85000,
                     usd: 3.35
                 },
-                image: "https://images.unsplash.com/photo-1604467715878-83e57e8bc129?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Empanadas.jpg",
                 rating: 4.5
             },
             {
                 id: 17,
                 name: {
                     vi: "Súp Tortilla",
-                    us: "Tortilla Soup"
+                    us: "Sopa de Tortilla"
                 },
                 description: {
                     vi: "Súp cà chua nóng, chua nhẹ và sảng khoái, bánh tortilla chiên giòn, phô mai béo tan chảy, lát bơ mềm và thơm, tạo nên hương vị ấm áp, dễ chịu trong từng thìa.",
@@ -305,14 +398,14 @@ $(document).ready(function() {
                     vnd: 95000,
                     usd: 3.75
                 },
-                image: "https://images.unsplash.com/photo-1623595119708-26b1f7500cca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/mainCourses/Sopa de Tortilla.jpg",
                 rating: 4.4
             },
             {
                 id: 18,
                 name: {
                     vi: "Trứng Ranchero",
-                    us: "Ranchero Eggs"
+                    us: "Huevos Rancheros"
                 },
                 description: {
                     vi: "Trứng chiên tan chảy, béo ngậy đặt trên bánh tortilla mềm, giòn, sốt cà chua cay nhẹ, và đậu nghiền thơm, tạo nên sự kết hợp phong phú, bổ dưỡng cho bữa sáng lý tưởng.",
@@ -322,14 +415,14 @@ $(document).ready(function() {
                     vnd: 100000,
                     usd: 3.95
                 },
-                image: "https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/mainCourses/Huevos Rancheros.jpg",
                 rating: 4.5
             },
             {
                 id: 19,
                 name: {
                     vi: "Chubby",
-                    us: "Chubby"
+                    us: "Gorditas"
                 },
                 description: {
                     vi: "Bánh tortilla dày chiên vàng, bên ngoài giòn nhẹ, bên trong mềm, nhân thịt heo mềm và thơm, đậu nghiền béo ngậy, phô mai tan chảy, cảm giác hài hòa giữa độ giòn và mềm.",
@@ -339,7 +432,7 @@ $(document).ready(function() {
                     vnd: 85000,
                     usd: 3.35
                 },
-                image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
+                image: "../images/menu/mainCourses/Gorditas.jpg",
                 rating: 4.4
             }
         ],
@@ -358,7 +451,7 @@ $(document).ready(function() {
                     vnd: 55000,
                     usd: 2.20
                 },
-                image: "https://images.unsplash.com/photo-1615887625746-f3d2aa27e048?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/drinks/Horchata.jpg",
                 rating: 4.7
             },
             {
@@ -375,7 +468,7 @@ $(document).ready(function() {
                     vnd: 50000,
                     usd: 1.95
                 },
-                image: "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/drinks/Jamaican water.jpg",
                 rating: 4.5
             },
             {
@@ -392,7 +485,7 @@ $(document).ready(function() {
                     vnd: 55000,
                     usd: 2.20
                 },
-                image: "https://images.unsplash.com/photo-1616360151857-3914da25dbe0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/drinks/Tepache.jpg",
                 rating: 4.6
             },
             {
@@ -409,7 +502,7 @@ $(document).ready(function() {
                     vnd: 60000,
                     usd: 2.35
                 },
-                image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1421&q=80",
+                image: "../images/menu/drinks/Atole.jpg",
                 rating: 4.4
             },
             {
@@ -426,7 +519,7 @@ $(document).ready(function() {
                     vnd: 60000,
                     usd: 2.35
                 },
-                image: "https://images.unsplash.com/photo-1514508985285-52fa488e199a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/drinks/Champurrado.jpg",
                 rating: 4.8
             },
             {
@@ -443,7 +536,7 @@ $(document).ready(function() {
                     vnd: 40000,
                     usd: 1.70
                 },
-                image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+                image: "../images/menu/drinks/Coca.jpg",
                 rating: 4.5
             },
             {
@@ -460,7 +553,7 @@ $(document).ready(function() {
                     vnd: 40000,
                     usd: 1.70
                 },
-                image: "https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/drinks/Fanta.jpg",
                 rating: 4.3
             },
             {
@@ -477,7 +570,7 @@ $(document).ready(function() {
                     vnd: 40000,
                     usd: 1.70
                 },
-                image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/drinks/Sprite.jpg",
                 rating: 4.4
             },
             {
@@ -494,7 +587,7 @@ $(document).ready(function() {
                     vnd: 50000,
                     usd: 2.10
                 },
-                image: "https://images.unsplash.com/photo-1587157412974-6f6d309455a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/drinks/Pineapple juice.jpg",
                 rating: 4.7
             },
             {
@@ -511,7 +604,7 @@ $(document).ready(function() {
                     vnd: 50000,
                     usd: 2.10
                 },
-                image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/drinks/Orange juice.jpg",
                 rating: 4.6
             },
             {
@@ -528,7 +621,7 @@ $(document).ready(function() {
                     vnd: 55000,
                     usd: 2.30
                 },
-                image: "https://images.unsplash.com/photo-1615478503562-ec2d8aa0e24e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/drinks/Passion fruit juice.jpg",
                 rating: 4.8
             },
             {
@@ -545,7 +638,7 @@ $(document).ready(function() {
                     vnd: 45000,
                     usd: 1.90
                 },
-                image: "https://images.unsplash.com/photo-1556679343-c1306ee3f376?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80",
+                image: "../images/menu/drinks/Lemon tea.jpg",
                 rating: 4.5
             }
         ],
@@ -564,7 +657,7 @@ $(document).ready(function() {
                     vnd: 65000,
                     usd: 2.55
                 },
-                image: "https://images.unsplash.com/photo-1624371414361-e670efd642e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/dessert/Churros.jpg",
                 rating: 4.7
             },
             {
@@ -581,41 +674,41 @@ $(document).ready(function() {
                     vnd: 70000,
                     usd: 2.75
                 },
-                image: "https://images.unsplash.com/photo-1602663491496-73f07481dbea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/dessert/Tres Leches Cake.jpg",
                 rating: 4.8
             },
             {
                 id: 3,
                 name: {
                     vi: "Chè gạo",
-                    us: "Rice Pudding"
+                    us: "Arroz con Leche"
                 },
                 description: {
                     vi: "Chè gạo nấu với sữa, đường và quế, tạo nên hương vị ngọt, thơm mùi quế và kết cấu mịn màng, thường được phục vụ lạnh hoặc ấm.",
-                    us: "Rice sweet soup cooked with milk, sugar and cinnamon, creating a sweet, cinnamon-scented flavor and smooth texture, is often served cold or warm."
+                    us: "A creamy, comforting rice pudding simmered in sweet milk and infused with aromatic cinnamon. With each spoonful, you experience a delightful balance of creamy richness and delicate sweetness. Served warm or chilled, the smooth and thick texture offers a nostalgic, homey comfort that lingers on the palate."
                 },
                 price: {
                     vnd: 60000,
                     usd: 2.35
                 },
-                image: "https://images.unsplash.com/photo-1630356221292-a87102916582?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+                image: "../images/menu/dessert/Arroz con Leche.jpg",
                 rating: 4.5
             },
             {
                 id: 4,
                 name: {
                     vi: "Bánh rán",
-                    us: "Fritters"
+                    us: "Buñuelos"
                 },
                 description: {
                     vi: "Bánh rán mỏng, giòn, thường có hình tròn, phủ đường và quế, đôi khi với mật ong hoặc siro sô cô la, tạo nên món tráng miệng giòn và ngọt.",
-                    us: "Thin, crispy fried cakes, usually round in shape, coated with sugar and cinnamon, sometimes with honey or chocolate syrup, creating a crunchy and sweet dessert."
+                    us: "Thin, crispy fried dough discs dusted with sugar and cinnamon, delivering a delightful crunch with every bite. Sometimes served with honey or chocolate sauce for added indulgence, Buñuelos provide a light yet satisfying sweetness with a delicate, caramelized crispness that makes them irresistibly addictive."
                 },
                 price: {
                     vnd: 60000,
                     usd: 2.35
                 },
-                image: "https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/dessert/Buñuelos.jpg",
                 rating: 4.4
             },
             {
@@ -632,7 +725,7 @@ $(document).ready(function() {
                     vnd: 65000,
                     usd: 2.55
                 },
-                image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80",
+                image: "../images/menu/dessert/Capirotada.jpg",
                 rating: 4.6
             },
             {
@@ -649,7 +742,7 @@ $(document).ready(function() {
                     vnd: 70000,
                     usd: 2.75
                 },
-                image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                image: "../images/menu/dessert/Flan Mexico.jpg",
                 rating: 4.9
             },
             {
@@ -666,7 +759,7 @@ $(document).ready(function() {
                     vnd: 60000,
                     usd: 2.30
                 },
-                image: "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/dessert/Paletas de limon.jpg",
                 rating: 4.3
             },
             {
@@ -683,7 +776,7 @@ $(document).ready(function() {
                     vnd: 60000,
                     usd: 2.30
                 },
-                image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80",
+                image: "../images/menu/dessert/Paletas de yogur con fresa.jpg",
                 rating: 4.5
             },
             {
@@ -700,14 +793,14 @@ $(document).ready(function() {
                     vnd: 65000,
                     usd: 2.60
                 },
-                image: "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/dessert/Helado de Elote.jpg",
                 rating: 4.7
             },
             {
                 id: 10,
                 name: {
                     vi: "Raspado",
-                    us: "Raspado"
+                    us: "Raspados"
                 },
                 description: {
                     vi: "Món tráng miệng đá bào truyền thống của Mexico được phủ xi-rô trái cây hoặc sốt me. Kết cấu nhẹ, thoáng của nó tan chảy nhanh chóng, giải phóng hương vị trái cây, chua ngọt và đôi khi cay nồng. Hoàn hảo cho những ngày nóng bức, Raspado là món ăn sảng khoái và có thể tùy chỉnh.",
@@ -717,7 +810,7 @@ $(document).ready(function() {
                     vnd: 65000,
                     usd: 2.60
                 },
-                image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                image: "../images/menu/dessert/Raspados.jpg",
                 rating: 4.6
             }
         ]
