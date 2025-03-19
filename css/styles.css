@@ -239,6 +239,58 @@ img {
     min-width: 180px;
 }
 
+/* Carousel styles */
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+    background-color: var(--gold);
+}
+
 /* Menu Categories Section */
 .menu-categories {
     background-color: var(--primary);
@@ -547,6 +599,16 @@ img {
     
     .countdown-label {
         font-size: 8px;
+    }
+    
+    .carousel-container {
+        max-width: 100%;
+    }
+    
+    .carousel-dot {
+        width: 10px;
+        height: 10px;
+        margin: 0 4px;
     }
 }
 

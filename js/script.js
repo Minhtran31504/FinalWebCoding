@@ -11,6 +11,73 @@ $(document).ready(function() {
         }
     });
     
+    // Carousel functionality
+    function setupCarousel() {
+        const track = $('.carousel-track');
+        const slides = $('.carousel-slide');
+        const dotsContainer = $('.carousel-dots');
+        const slideWidth = slides.first().width();
+        let currentIndex = 0;
+        let slideInterval;
+        
+        // Create dots for each slide
+        slides.each(function(index) {
+            dotsContainer.append(`<div class="carousel-dot ${index === 0 ? 'active' : ''}"></div>`);
+        });
+        
+        const dots = $('.carousel-dot');
+        
+        // Function to move to a specific slide
+        function moveToSlide(index) {
+            if (index < 0) {
+                index = slides.length - 1;
+            } else if (index >= slides.length) {
+                index = 0;
+            }
+            
+            currentIndex = index;
+            track.css('transform', `translateX(-${currentIndex * 100}%)`);
+            
+            // Update active dot
+            dots.removeClass('active');
+            dots.eq(currentIndex).addClass('active');
+        }
+        
+        // Auto advance slides
+        function startSlideshow() {
+            slideInterval = setInterval(function() {
+                moveToSlide(currentIndex + 1);
+            }, 3000); // Change slide every 5 seconds
+        }
+        
+        // Click on dots to navigate
+        dots.on('click', function() {
+            const dotIndex = $(this).index();
+            moveToSlide(dotIndex);
+            
+            // Reset the interval when manually changing slides
+            clearInterval(slideInterval);
+            startSlideshow();
+        });
+        
+        // Start the slideshow
+        startSlideshow();
+        
+        // Pause slideshow on hover
+        $('.carousel-container').hover(
+            function() { clearInterval(slideInterval); },
+            function() { startSlideshow(); }
+        );
+        
+        // Handle window resize
+        $(window).resize(function() {
+            moveToSlide(currentIndex);
+        });
+    }
+    
+    // Initialize carousel
+    setupCarousel();
+    
     // Countdown Timer
     function updateCountdown() {
         // Set the date we're counting down to (New Year's Eve)

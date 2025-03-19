@@ -54,6 +54,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- Checkout Button moved here -->
+                <button id="checkoutBtn" class="checkout-btn">CHECK OUT</button>
             </div>
 
             <!-- Right Column: Delivery and Payment -->
@@ -92,15 +94,15 @@
                     <div class="option-list">
                         <label class="option-item">
                             <input type="radio" name="payment" value="cash">
-                            <div class="option-icon">
-                                <i class="fas fa-money-bill"></i>
+                            <div class="option-icon vnpay-icon">
+                                <img src="../images/home/cash.jpg" alt="VN Pay">
                             </div>
                             <span class="option-text">Cash payment</span>
                         </label>
                         <label class="option-item">
                             <input type="radio" name="payment" value="card">
-                            <div class="option-icon">
-                                <i class="fas fa-credit-card"></i>
+                            <div class="option-icon vnpay-icon">
+                                <img src="../images/home/card.jpg" alt="VN Pay">
                             </div>
                             <span class="option-text">Card payment</span>
                         </label>
@@ -122,33 +124,101 @@
                     </div>
                 </div>
 
+                <!-- Cash Payment Message -->
+                <div id="cashPaymentMessage" class="payment-box cash-message hidden">
+                    <h3>The staff will arrive in a few minutes, please wait.</h3>
+                </div>
+
                 <!-- Card Payment Form -->
                 <div id="cardPaymentForm" class="payment-box hidden">
-                    <h3>Card Information</h3>
-                    <div class="card-form">
-                        <div class="form-group">
-                            <label>Card Number</label>
-                            <input type="text" placeholder="1234 5678 9012 3456" required>
+                    <h2 class="form-title">PAYMENT FORM</h2>
+                    
+                    <div class="form-section">
+                        <h3 class="section-title">PAYMENT INFORMATION</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Select a payment method</label>
+                                <div class="select-wrapper">
+                                    <select>
+                                        <option disabled selected>--select--</option>
+                                        <option>Credit Card</option>
+                                        <option>Debit Card</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Expiration date</label>
+                                <input type="text" placeholder="MM / YYYY">
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Expiration Date</label>
-                                <input type="text" placeholder="MM/YY" required>
+                                <label>Card Number</label>
+                                <input type="text" placeholder="">
                             </div>
                             <div class="form-group">
-                                <label>Security Code</label>
-                                <input type="text" placeholder="CVV" required>
+                                <label>Security code</label>
+                                <input type="text" placeholder="">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Card Holder Name</label>
-                            <input type="text" placeholder="Name on card" required>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-title">BILLING INFORMATION</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <div class="select-wrapper">
+                                    <select>
+                                        <option disabled selected>--select--</option>
+                                        <option>Vietnam</option>
+                                        <option>United States</option>
+                                        <option>Canada</option>
+                                        <option>United Kingdom</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Billing Address</label>
+                                <input type="text" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <div class="select-wrapper">
+                                    <select>
+                                        <option disabled selected>--select--</option>
+                                        <option>Hanoi</option>
+                                        <option>Ho Chi Minh</option>
+                                        <option>Da Nang</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label>Zip or Postal Code</label>
+                                <input type="text" placeholder="">
+                            </div>
                         </div>
                     </div>
+                    
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+                    
+                    <button class="continue-btn">Continue</button>
                 </div>
-
-                <!-- Checkout Button -->
-                <button id="checkoutBtn" class="checkout-btn">CHECK OUT</button>
 
                 <!-- Message Box -->
                 <div id="messageBox" class="message-box hidden">

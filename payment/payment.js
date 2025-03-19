@@ -120,13 +120,22 @@ $(document).ready(function() {
     function showPaymentForm() {
         // Xử lý hiển thị form thanh toán dựa trên selectedPayment
         // Ẩn tất cả các form thanh toán
-        $('#vnpayQRCode, #cardPaymentForm').addClass('hidden');
+        $('#vnpayQRCode, #cardPaymentForm, #cashPaymentMessage').addClass('hidden');
         
         // Hiển thị form tương ứng
         if (selectedPayment === 'vnpay') {
             $('#vnpayQRCode').removeClass('hidden');
         } else if (selectedPayment === 'card') {
             $('#cardPaymentForm').removeClass('hidden');
+        } else if (selectedPayment === 'cash') {
+            $('#cashPaymentMessage').removeClass('hidden');
+            
+            // Hiển thị thông báo phù hợp với loại giao hàng
+            if (selectedDelivery && messages[selectedDelivery] && messages[selectedDelivery]['cash']) {
+                $('#cashPaymentMessage h3').text(messages[selectedDelivery]['cash']);
+            } else {
+                $('#cashPaymentMessage h3').text('The staff will arrive in a few minutes, please wait.');
+            }
         }
     }
 
@@ -186,7 +195,7 @@ $(document).ready(function() {
     // Ẩn cả message và form
     function hideMessageAndForms() {
         hideMessage();
-        $('#vnpayQRCode, #cardPaymentForm').addClass('hidden');
+        $('#vnpayQRCode, #cardPaymentForm, #cashPaymentMessage').addClass('hidden');
     }
 
     // Load order items (demo data)
@@ -295,23 +304,29 @@ $(document).ready(function() {
                 item.description.substring(0, 60) + '...' : 
                 item.description;
             
-            // Tạo HTML cho mỗi món ăn
+            // Tạo HTML cho mỗi món ăn với thiết kế mới
             orderItemsHTML += `
                 <div class="order-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="item-details">
-                        <h3>${item.name}</h3>
+                    <div class="item-image-container">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-header">
+                            <h3>${item.name}</h3>
+                            <span class="item-price">$${(priceValue).toFixed(2)}</span>
+                        </div>
                         <p>${shortDescription}</p>
-                        <div class="quantity-control">
-                            <button class="quantity-btn minus" data-index="${index}">-</button>
-                            <span class="quantity">${item.quantity}</span>
-                            <button class="quantity-btn plus" data-index="${index}">+</button>
+                        <div class="item-footer">
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus" data-index="${index}">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn plus" data-index="${index}">+</button>
+                            </div>
+                            <button class="remove-item" data-index="${index}">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="item-price">$${(priceValue).toFixed(2)}</div>
-                    <button class="remove-item" data-index="${index}">
-                        <i class="fas fa-times"></i>
-                    </button>
                 </div>
             `;
         });
@@ -373,4 +388,37 @@ $(document).ready(function() {
             }
         `)
         .appendTo('head');
+
+    // Thêm xử lý cho nút Continue trong form thanh toán
+    $(document).on('click', '.continue-btn', function() {
+        // Kiểm tra form hợp lệ
+        let isValid = true;
+        
+        // Kiểm tra các trường bắt buộc
+        $('#cardPaymentForm input, #cardPaymentForm select').each(function() {
+            if ($(this).prop('required') && !$(this).val()) {
+                isValid = false;
+                $(this).addClass('error');
+            } else {
+                $(this).removeClass('error');
+            }
+        });
+        
+        if (!isValid) {
+            showToast("Please fill in all required fields", "warning");
+            return;
+        }
+        
+        // Xử lý thanh toán
+        $('#checkoutBtn').click();
+    });
+
+    // Xử lý khi người dùng chọn "Remember Me"
+    $('#rememberMe').change(function() {
+        if ($(this).is(':checked')) {
+            // Lưu thông tin thanh toán vào localStorage hoặc Cookie
+            // Chỉ để demo, trong thực tế không nên lưu thông tin thẻ trong localStorage
+            showToast("Payment information will be remembered for future use", "info");
+        }
+    });
 });
