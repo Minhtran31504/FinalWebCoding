@@ -87,7 +87,7 @@ function updateItemDetails(item) {
         $('.back-button a').html('<i class="fas fa-arrow-left"></i> Quay lại Menu');
         $('.bon-appetit').text('Chúc ngon miệng!');
     } else {
-        $('.order-btn').text('ORDER NOW');
+        $('.order-btn').text('ADD TO CART');
         $('.back-button a').html('<i class="fas fa-arrow-left"></i> Back to Menu');
         $('.bon-appetit').text('Buon Appetito!');
     }

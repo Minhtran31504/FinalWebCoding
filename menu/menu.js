@@ -831,7 +831,7 @@ $(document).ready(function() {
             `$${typeof item.price === 'object' ? item.price.usd : item.price}`;
         
         // Nút đặt hàng theo ngôn ngữ
-        const orderButtonText = currentLanguage === 'vi' ? 'ĐẶT NGAY' : 'ORDER NOW';
+        const orderButtonText = currentLanguage === 'vi' ? 'THÊM VÀO GIỎ HÀNG' : 'ADD TO CART';
         
         return `
             <div class="menu-item">
@@ -878,8 +878,207 @@ $(document).ready(function() {
     populateMenuSection('drinks', menuData.drinks);
     populateMenuSection('dessert', menuData.dessert);
 
+    // Cập nhật giao diện tìm kiếm
+    $('.menu-tabs').append(`
+        <div class="search-bar">
+            <input type="text" placeholder="Search menu..." aria-label="Search menu items">
+            <button class="clear-search" style="display: none;">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="search-results-count"></div>
+        </div>
+    `);
+
+    // Thêm thông báo không có kết quả
+    $('.container').append(`
+        <div class="no-results-msg">
+            <i class="fas fa-search"></i>
+            <p class="no-results-text">No menu items found matching your search</p>
+        </div>
+    `);
+
+    // Xử lý tìm kiếm
+    $('.search-bar input').on('input', function() {
+        const searchTerm = $(this).val().toLowerCase().trim();
+        
+        // Hiển thị/ẩn nút xóa
+        if (searchTerm.length > 0) {
+            $('.clear-search').show();
+        } else {
+            $('.clear-search').hide();
+        }
+        
+        // Thực hiện tìm kiếm
+        performSearch(searchTerm);
+    });
+
+    // Xử lý khi nhấn nút tìm kiếm
+    $('.search-btn').on('click', function() {
+        const searchTerm = $('.search-bar input').val().toLowerCase().trim();
+        performSearch(searchTerm);
+    });
+
+    // Xử lý khi nhấn Enter trong ô tìm kiếm
+    $('.search-bar input').on('keypress', function(e) {
+        if (e.which === 13) {
+            const searchTerm = $(this).val().toLowerCase().trim();
+            performSearch(searchTerm);
+        }
+    });
+
+    // Xử lý khi nhấn nút xóa
+    $('.clear-search').on('click', function() {
+        $('.search-bar input').val('');
+        $(this).hide();
+        resetSearch();
+    });
+
+    // Thêm hiệu ứng khi focus vào ô tìm kiếm
+    $('.search-bar input').on('focus', function() {
+        $('.search-bar').addClass('focused');
+    }).on('blur', function() {
+        $('.search-bar').removeClass('focused');
+    });
+
+    // Hàm thực hiện tìm kiếm
+    function performSearch(searchTerm) {
+        if (!searchTerm) {
+            resetSearch();
+            return;
+        }
+
+        // Đếm số kết quả khớp
+        let matchCount = 0;
+        
+        // Tìm kiếm trong tất cả các món
+        $('.menu-item').each(function() {
+            const $item = $(this);
+            const itemName = $item.find('.menu-item-name').text().toLowerCase();
+            const itemDesc = $item.find('.menu-item-description').text().toLowerCase();
+            
+            if (itemName.includes(searchTerm) || itemDesc.includes(searchTerm)) {
+                $item.show();
+                $item.addClass('search-match');
+                
+                // Highlight từ khóa tìm kiếm
+                highlightSearchTerm($item, '.menu-item-name', itemName, searchTerm);
+                highlightSearchTerm($item, '.menu-item-description', itemDesc, searchTerm);
+                
+                matchCount++;
+            } else {
+                $item.hide();
+                $item.removeClass('search-match');
+                
+                // Xóa highlighting
+                $item.find('.menu-item-name, .menu-item-description').each(function() {
+                    $(this).html($(this).text());
+                });
+            }
+        });
+        
+        // Hiển thị thông báo không có kết quả nếu cần
+        if (matchCount === 0) {
+            $('.no-results-msg').show();
+            $('.no-results-text').text(
+                currentLanguage === 'vi' ? 
+                'Không tìm thấy món ăn nào phù hợp với tìm kiếm của bạn' : 
+                'No menu items found matching your search'
+            );
+        } else {
+            $('.no-results-msg').hide();
+        }
+        
+        // Cập nhật số lượng kết quả tìm kiếm
+        if (matchCount > 0) {
+            const resultText = currentLanguage === 'vi' ? 
+                `Tìm thấy ${matchCount} kết quả` : 
+                `Found ${matchCount} result${matchCount !== 1 ? 's' : ''}`;
+            $('.search-results-count').text(resultText).show();
+        } else {
+            const noResultText = currentLanguage === 'vi' ? 
+                'Không tìm thấy kết quả nào' : 
+                'No results found';
+            $('.search-results-count').text(noResultText).show();
+        }
+        
+        // Hiển thị tất cả các section nhưng chỉ hiển thị các món khớp
+        $('.menu-section').each(function() {
+            const sectionId = $(this).attr('id');
+            const hasResults = $(this).find('.menu-item:visible').length > 0;
+            
+            if (hasResults) {
+                $(this).show();
+                
+                // Cập nhật tab tương ứng
+                $('.tab-btn[data-category="' + sectionId + '"]').removeClass('no-results');
+            } else {
+                $(this).hide();
+                
+                // Cập nhật tab tương ứng
+                $('.tab-btn[data-category="' + sectionId + '"]').addClass('no-results');
+            }
+        });
+        
+        // Reset active tab
+        $('.tab-btn').removeClass('active');
+        $('.tab-btn[data-category="all"]').addClass('active');
+    }
+
+    // Hàm highlight từ khóa tìm kiếm
+    function highlightSearchTerm($item, selector, text, searchTerm) {
+        const $element = $item.find(selector);
+        const originalText = $element.text();
+        
+        if (!text.includes(searchTerm)) return;
+        
+        const regex = new RegExp(searchTerm, 'gi');
+        const highlightedText = originalText.replace(regex, match => 
+            `<span">${match}</span>`
+        );
+        
+        $element.html(highlightedText);
+    }
+
+    // Hàm reset tìm kiếm
+    function resetSearch() {
+        // Hiển thị lại tất cả các món
+        $('.menu-item').show().removeClass('search-match');
+        
+        // Xóa highlighting
+        $('.menu-item-name, .menu-item-description').each(function() {
+            $(this).html($(this).text());
+        });
+        
+        // Hiển thị lại tất cả các section
+        $('.menu-section').show();
+        
+        // Ẩn thông báo không có kết quả
+        $('.no-results-msg').hide();
+        
+        // Xóa thông báo kết quả tìm kiếm
+        $('.search-results-count').text('').hide();
+        
+        // Reset trạng thái tab
+        $('.tab-btn').removeClass('no-results');
+        
+        // Chỉ hiển thị section của tab đang active
+        const activeCategory = $('.tab-btn.active').data('category');
+        if (activeCategory && activeCategory !== 'all') {
+            $('.menu-section').hide();
+            $(`#${activeCategory}`).show();
+        }
+    }
+
     // Tab switching functionality
     $('.tab-btn').click(function() {
+        // Reset tìm kiếm khi chuyển tab
+        $('.search-bar input').val('');
+        $('.clear-search').hide();
+        resetSearch();
+        
         $('.tab-btn').removeClass('active');
         $(this).addClass('active');
         
@@ -996,8 +1195,159 @@ $(document).ready(function() {
         };
         
         localStorage.setItem('selectedItem', JSON.stringify(itemData));
-        
-        // Chuyển hướng đến trang chi tiết
-        window.location.href = '../item-details/item-details.html';
     });
+
+    // Thêm hàm hiển thị thông báo toast
+    function showToast(message) {
+        // Tạo toast nếu chưa tồn tại
+        if ($('#toast-container').length === 0) {
+            $('body').append('<div id="toast-container"></div>');
+        }
+        
+        // Tạo toast mới
+        const toast = $(`<div class="toast" style="background-color: green;">${message}</div>`);
+        $('#toast-container').append(toast);
+        
+        // Hiển thị và xóa sau 3 giây
+        setTimeout(function() {
+            toast.addClass('show');
+            setTimeout(function() {
+                toast.removeClass('show');
+                setTimeout(function() {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }, 10);
+    }
+    
+    // Hàm thêm sản phẩm vào giỏ hàng
+    function addToCart(item) {
+        // Lấy giỏ hàng hiện tại từ localStorage hoặc tạo mới nếu chưa có
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Kiểm tra xem món ăn đã có trong giỏ hàng chưa
+        const existingItemIndex = cart.findIndex(cartItem => 
+            cartItem.name === item.name && cartItem.price === item.price
+        );
+        
+        if (existingItemIndex !== -1) {
+            // Nếu đã có, tăng số lượng
+            cart[existingItemIndex].quantity += 1;
+        } else {
+            // Nếu chưa có, thêm món ăn mới vào giỏ hàng
+            item.quantity = 1;
+            cart.push(item);
+        }
+        
+        // Lưu giỏ hàng vào localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Cập nhật số lượng hiển thị trên biểu tượng giỏ hàng
+        updateCartBadge();
+        
+        // Hiển thị thông báo
+        const message = currentLanguage === 'vi' ? 
+            'Thêm vào giỏ hàng thành công' : 
+            'Successfully added to cart';
+        showToast(message);
+    }
+    
+    // Hàm cập nhật số lượng trên biểu tượng giỏ hàng
+    function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        
+        // Nếu đã có badge thì cập nhật, nếu chưa thì tạo mới
+        if ($('.cart-badge').length === 0) {
+            $('.fa-shopping-cart').after('<span class="cart-badge"></span>');
+        }
+        
+        if (totalItems > 0) {
+            $('.cart-badge').text(totalItems).show();
+        } else {
+            $('.cart-badge').hide();
+        }
+    }
+    
+    // Xử lý sự kiện khi người dùng nhấn vào nút "ADD TO CART"
+    $(document).on('click', '.order-btn', function() {
+        // Tìm phần tử menu-item gần nhất
+        const menuItem = $(this).closest('.menu-item');
+        
+        // Lấy thông tin món ăn
+        const itemName = menuItem.find('.menu-item-name').text();
+        const itemDescription = menuItem.find('.menu-item-description').text();
+        const itemPrice = menuItem.find('.menu-item-price').text();
+        const itemImage = menuItem.find('img').attr('src');
+        const itemRating = menuItem.find('.menu-item-rating').text().trim().length / 2; // Đếm số sao
+        
+        // Tạo đối tượng chứa thông tin món ăn
+        const itemData = {
+            name: itemName,
+            description: itemDescription,
+            price: itemPrice,
+            image: itemImage,
+            rating: itemRating,
+            language: currentLanguage
+        };
+        
+        // Thêm vào giỏ hàng
+        addToCart(itemData);
+    });
+    
+    // Xử lý sự kiện khi người dùng nhấn vào biểu tượng giỏ hàng
+    $(document).on('click', '.fa-shopping-cart', function() {
+        // Chuyển hướng đến trang payment.html
+        window.location.href = '../payment/payment.html';
+    });
+    
+    // Thêm CSS cho toast
+    $('head').append(`
+        <style>
+            #toast-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999;
+            }
+            
+            .toast {
+                background-color: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                margin-top: 10px;
+                opacity: 0;
+                transform: translateY(100px);
+                transition: all 0.3s;
+            }
+            
+            .toast.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .cart-badge {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background-color: #e74c3c;
+                color: white;
+                font-size: 12px;
+                width: 18px;
+                height: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+            }
+            
+            .social-icon {
+                position: relative;
+            }
+        </style>
+    `);
+    
+    // Khởi tạo badge cho giỏ hàng khi trang được tải
+    updateCartBadge();
 });

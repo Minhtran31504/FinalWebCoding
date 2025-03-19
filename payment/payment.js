@@ -19,6 +19,70 @@ $(document).ready(function() {
 
     let selectedDelivery = '';
     let selectedPayment = '';
+    
+    // Tạo container cho toast nếu chưa có
+    if (!$('.toast-container').length) {
+        $('body').append('<div class="toast-container"></div>');
+    }
+    
+    // Hàm hiển thị toast notification
+    function showToast(message, type = 'info', title = '') {
+        // Xác định icon dựa vào type
+        let icon;
+        switch (type) {
+            case 'success':
+                icon = '<i class="fas fa-check-circle"></i>';
+                title = title || 'Success';
+                break;
+            case 'error':
+                icon = '<i class="fas fa-exclamation-circle"></i>';
+                title = title || 'Error';
+                break;
+            case 'warning':
+                icon = '<i class="fas fa-exclamation-triangle"></i>';
+                title = title || 'Warning';
+                break;
+            default:
+                icon = '<i class="fas fa-info-circle"></i>';
+                title = title || 'Information';
+        }
+        
+        // Tạo toast element
+        const toast = $(`
+            <div class="toast ${type}">
+                <div class="toast-icon">${icon}</div>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close">&times;</button>
+            </div>
+        `);
+        
+        // Thêm vào container
+        $('.toast-container').append(toast);
+        
+        // Hiển thị toast với animation
+        setTimeout(() => {
+            toast.addClass('show');
+            
+            // Tự động xóa sau 4 giây
+            setTimeout(() => {
+                toast.removeClass('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4000);
+        }, 10);
+        
+        // Xử lý sự kiện đóng toast
+        toast.find('.toast-close').on('click', function() {
+            toast.removeClass('show');
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        });
+    }
 
     // Xử lý khi chọn delivery type
     $('input[name="delivery"]').change(function() {
@@ -38,68 +102,74 @@ $(document).ready(function() {
     function updatePaymentOptions() {
         if (selectedDelivery === 'delivery') {
             $('input[value="cash"]').prop('disabled', true)
-                .closest('.payment-option').addClass('disabled');
+                .closest('.option-item').addClass('disabled');
+                
+            // Hiển thị thông báo nếu đang chọn cash
+            if ($('input[value="cash"]').is(':checked')) {
+                $('input[value="cash"]').prop('checked', false);
+                $('#vnpayQRCode, #cardPaymentForm').addClass('hidden');
+                showToast("Cash payment is not available for delivery orders. Please select another payment method.", "warning");
+            }
         } else {
             $('input[value="cash"]').prop('disabled', false)
-                .closest('.payment-option').removeClass('disabled');
+                .closest('.option-item').removeClass('disabled');
         }
     }
 
     // Hiển thị form thanh toán tương ứng
     function showPaymentForm() {
-        const $paymentForm = $('#paymentForm');
-        $paymentForm.empty().removeClass('hidden');
-
-        if (selectedPayment === 'card') {
-            $paymentForm.html(`
-                <h3>Payment Information</h3>
-                <div class="card-form">
-                    <div class="form-group">
-                        <label>Card Number</label>
-                        <input type="text" placeholder="1234 5678 9012 3456">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Expiration Date</label>
-                            <input type="text" placeholder="MM/YY">
-                        </div>
-                        <div class="form-group">
-                            <label>Security Code</label>
-                            <input type="text" placeholder="CVV">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Card Holder Name</label>
-                        <input type="text" placeholder="Name on card">
-                    </div>
-                </div>
-            `);
-        } else if (selectedPayment === 'vnpay') {
-            $paymentForm.html(`
-                <div class="qr-code">
-                    <img src="../images/vnpay-qr.png" alt="VN Pay QR Code">
-                    <p>Scan QR code to pay</p>
-                </div>
-            `);
+        // Xử lý hiển thị form thanh toán dựa trên selectedPayment
+        // Ẩn tất cả các form thanh toán
+        $('#vnpayQRCode, #cardPaymentForm').addClass('hidden');
+        
+        // Hiển thị form tương ứng
+        if (selectedPayment === 'vnpay') {
+            $('#vnpayQRCode').removeClass('hidden');
+        } else if (selectedPayment === 'card') {
+            $('#cardPaymentForm').removeClass('hidden');
         }
     }
 
     // Xử lý nút checkout
     $('#checkoutBtn').click(function() {
-        if (!selectedDelivery || !selectedPayment) {
-            alert('Please select delivery type and payment method');
+        if (!selectedDelivery) {
+            showToast("Please select a delivery method", "warning");
             return;
         }
-
+        
+        if (!selectedPayment) {
+            showToast("Please select a payment method", "warning");
+            return;
+        }
+        
+        // Kiểm tra trường hợp không hợp lệ: delivery + cash
         if (selectedDelivery === 'delivery' && selectedPayment === 'cash') {
-            showMessage("Takeout orders do not accept cash payments. Please make your payment in advance.");
+            showToast("Cash payment is not available for delivery orders. Please select another payment method.", "error");
             return;
         }
-
-        const message = messages[selectedDelivery][selectedPayment];
-        if (message) {
-            showMessage(message);
-        }
+        
+        // Hiển thị thông báo thành công
+        $('#messageBox').removeClass('hidden error').addClass('success')
+            .html(`
+                <i class="fas fa-check-circle"></i>
+                <h3>Order Successful!</h3>
+                <p>Thank you for your order. We will process it immediately.</p>
+            `);
+        
+        // Hiển thị toast thông báo
+        showToast("Your order has been placed successfully!", "success", "Order Confirmed");
+        
+        // Xóa giỏ hàng sau khi đặt hàng thành công
+        localStorage.removeItem('cart');
+        
+        // Ẩn nút thanh toán và form thanh toán
+        $(this).hide();
+        $('#vnpayQRCode, #cardPaymentForm').addClass('hidden');
+        
+        // Sau 5 giây, chuyển về trang chủ
+        setTimeout(function() {
+            window.location.href = '../index.html';
+        }, 5000);
     });
 
     // Hiển thị message
@@ -116,7 +186,7 @@ $(document).ready(function() {
     // Ẩn cả message và form
     function hideMessageAndForms() {
         hideMessage();
-        $('#paymentForm').addClass('hidden');
+        $('#vnpayQRCode, #cardPaymentForm').addClass('hidden');
     }
 
     // Load order items (demo data)
@@ -148,4 +218,159 @@ $(document).ready(function() {
 
     // Load order items khi trang được tải
     loadOrderItems();
+
+    // Lấy dữ liệu giỏ hàng từ localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Kiểm tra xem giỏ hàng có trống không
+    if (cart.length === 0) {
+        $('.order-items').html('<p class="empty-cart">Your cart is empty</p>');
+        $('.order-total').hide();
+        $('#checkoutBtn').prop('disabled', true).text('CART EMPTY');
+        showToast("Your shopping cart is empty. Please add items before checkout.", "info");
+        return;
+    }
+    
+    // Hiển thị các món ăn trong giỏ hàng
+    renderCartItems();
+    
+    // Xử lý sự kiện tăng số lượng
+    $(document).on('click', '.quantity-btn.plus', function() {
+        const index = $(this).data('index');
+        cart[index].quantity++;
+        updateCartItem(index);
+        showToast("Quantity updated", "success");
+    });
+    
+    // Xử lý sự kiện giảm số lượng
+    $(document).on('click', '.quantity-btn.minus', function() {
+        const index = $(this).data('index');
+        if (cart[index].quantity > 1) {
+            cart[index].quantity--;
+            updateCartItem(index);
+            showToast("Quantity updated", "success");
+        } else {
+            showToast("Minimum quantity is 1", "warning");
+        }
+    });
+    
+    // Xử lý sự kiện xóa món ăn
+    $(document).on('click', '.remove-item', function() {
+        const index = $(this).data('index');
+        const itemName = cart[index].name;
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Kiểm tra nếu giỏ hàng trống sau khi xóa
+        if (cart.length === 0) {
+            $('.order-items').html('<p class="empty-cart">Your cart is empty</p>');
+            $('.order-total').hide();
+            $('#checkoutBtn').prop('disabled', true).text('CART EMPTY');
+            showToast("All items have been removed from your cart", "info");
+        } else {
+            renderCartItems();
+            showToast(`"${itemName}" has been removed from your cart`, "success");
+        }
+    });
+    
+    // Hàm render danh sách món ăn trong giỏ hàng
+    function renderCartItems() {
+        let orderItemsHTML = '';
+        let subTotal = 0;
+        
+        cart.forEach((item, index) => {
+            // Xử lý giá tiền
+            let priceValue = 0;
+            
+            if (item.price.includes('$')) {
+                priceValue = parseFloat(item.price.replace('$', '')) * item.quantity;
+            } else if (item.price.includes('đ')) {
+                priceValue = parseFloat(item.price.replace(/[^\d]/g, '')) * item.quantity / 25000; // Chuyển đổi VND sang USD
+            }
+            
+            subTotal += priceValue;
+            
+            // Cắt ngắn mô tả nếu quá dài
+            const shortDescription = item.description.length > 60 ? 
+                item.description.substring(0, 60) + '...' : 
+                item.description;
+            
+            // Tạo HTML cho mỗi món ăn
+            orderItemsHTML += `
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p>${shortDescription}</p>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus" data-index="${index}">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-index="${index}">+</button>
+                        </div>
+                    </div>
+                    <div class="item-price">$${(priceValue).toFixed(2)}</div>
+                    <button class="remove-item" data-index="${index}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+        });
+        
+        // Cập nhật DOM
+        $('.order-items').html(orderItemsHTML);
+        
+        // Cập nhật tổng tiền
+        $('.subtotal .amount').text('$' + subTotal.toFixed(2));
+        $('.total .amount').text('$' + subTotal.toFixed(2));
+    }
+    
+    // Hàm cập nhật một món ăn cụ thể
+    function updateCartItem(index) {
+        // Cập nhật số lượng hiển thị
+        $(`.quantity-btn[data-index="${index}"]`).siblings('.quantity').text(cart[index].quantity);
+        
+        // Tính lại giá tiền của món ăn
+        let priceValue = 0;
+        
+        if (cart[index].price.includes('$')) {
+            priceValue = parseFloat(cart[index].price.replace('$', '')) * cart[index].quantity;
+        } else if (cart[index].price.includes('đ')) {
+            priceValue = parseFloat(cart[index].price.replace(/[^\d]/g, '')) * cart[index].quantity / 25000;
+        }
+        
+        // Cập nhật giá hiển thị
+        $(`.order-item:eq(${index}) .item-price`).text('$' + priceValue.toFixed(2));
+        
+        // Tính lại tổng tiền
+        let subTotal = 0;
+        
+        cart.forEach(item => {
+            if (item.price.includes('$')) {
+                subTotal += parseFloat(item.price.replace('$', '')) * item.quantity;
+            } else if (item.price.includes('đ')) {
+                subTotal += parseFloat(item.price.replace(/[^\d]/g, '')) * item.quantity / 25000;
+            }
+        });
+        
+        // Cập nhật tổng tiền hiển thị
+        $('.subtotal .amount').text('$' + subTotal.toFixed(2));
+        $('.total .amount').text('$' + subTotal.toFixed(2));
+        
+        // Lưu giỏ hàng vào localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    
+    // Thêm CSS cho option-item disabled
+    $('<style>')
+        .text(`
+            .option-item.disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            
+            .option-item.disabled:hover {
+                background-color: #f8f8f8;
+            }
+        `)
+        .appendTo('head');
 });

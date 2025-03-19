@@ -9,100 +9,203 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Toast Container sẽ được thêm bằng JavaScript -->
+    
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <!-- Copy từ reservation.html -->
+        <div class="container">
+            <div class="nav-left">
+                <a href="../menu/menu.html" class="nav-link">Menu</a>
+                <a href="../events/events.html" class="nav-link">Events</a>
+                <a href="../about/about.html" class="nav-link">About Us</a>
+            </div>
+
+            <a href="../index.html" class="logo">
+                <h1>EL AMOR HUY ANH</h1>
+                <p>RESTAURANT</p>
+            </a>
+
+            <div class="nav-right">
+                <a href="../reservation/reservation.html" class="nav-link">Reservation</a>
+                <a href="../payment/payment.html" class="nav-link active">Orders</a>
+                <a href="../contact/contact.html" class="nav-link">Contact Us</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Main Content -->
     <div class="container">
-        <div class="payment-container">
-            <div class="order-summary">
-                <h2>Your Order</h2>
-                <div class="order-items">
-                    <!-- Order items sẽ được thêm bằng JavaScript -->
-                </div>
-                <div class="order-total">
-                    <div class="subtotal">
-                        <span>Sub Total</span>
-                        <span class="amount">$14</span>
+        <div class="payment-layout">
+            <!-- Left Column: Order Summary -->
+            <div class="payment-column order-column">
+                <div class="payment-box">
+                    <h2>Your Order</h2>
+                    <div class="order-items">
+                        <!-- Order items sẽ được thêm bằng JavaScript -->
                     </div>
-                    <div class="total">
-                        <span>Total</span>
-                        <span class="amount">$14</span>
+                    <div class="order-total">
+                        <div class="subtotal">
+                            <span>Sub Total</span>
+                            <span class="amount">$14</span>
+                        </div>
+                        <div class="total">
+                            <span>Total</span>
+                            <span class="amount">$14</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="delivery-options">
-                <h2>Delivery Type</h2>
-                <div class="delivery-types">
-                    <label class="delivery-option">
-                        <input type="radio" name="delivery" value="delivery">
-                        <span class="option-label">
-                            <i class="fas fa-truck"></i>
-                            Delivery
-                        </span>
-                    </label>
-                    <label class="delivery-option">
-                        <input type="radio" name="delivery" value="pickup">
-                        <span class="option-label">
-                            <i class="fas fa-store"></i>
-                            Pick Up
-                        </span>
-                    </label>
-                    <label class="delivery-option">
-                        <input type="radio" name="delivery" value="dine-in">
-                        <span class="option-label">
-                            <i class="fas fa-utensils"></i>
-                            Eat In
-                        </span>
-                    </label>
+            <!-- Right Column: Delivery and Payment -->
+            <div class="payment-column options-column">
+                <!-- Delivery Options -->
+                <div class="payment-box">
+                    <h2>Delivery Type</h2>
+                    <div class="option-list">
+                        <label class="option-item">
+                            <input type="radio" name="delivery" value="delivery">
+                            <div class="option-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <span class="option-text">Delivery</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="delivery" value="pickup">
+                            <div class="option-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <span class="option-text">Pick Up</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="delivery" value="dine-in">
+                            <div class="option-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <span class="option-text">Eat In</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="payment-box">
+                    <h2>Payment</h2>
+                    <div class="option-list">
+                        <label class="option-item">
+                            <input type="radio" name="payment" value="cash">
+                            <div class="option-icon">
+                                <i class="fas fa-money-bill"></i>
+                            </div>
+                            <span class="option-text">Cash payment</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="payment" value="card">
+                            <div class="option-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <span class="option-text">Card payment</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="payment" value="vnpay">
+                            <div class="option-icon vnpay-icon">
+                                <img src="../images/home/vnpay.jpg" alt="VN Pay">
+                            </div>
+                            <span class="option-text">VN pay</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- VNPay QR Code -->
+                <div id="vnpayQRCode" class="payment-box qr-container hidden">
+                    <div class="qr-code">
+                        <img src="../images/home/QR.png" alt="VNPay QR Code">
+                        <p>Scan to Pay</p>
+                    </div>
+                </div>
+
+                <!-- Card Payment Form -->
+                <div id="cardPaymentForm" class="payment-box hidden">
+                    <h3>Card Information</h3>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiration Date</label>
+                                <input type="text" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Security Code</label>
+                                <input type="text" placeholder="CVV" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Card Holder Name</label>
+                            <input type="text" placeholder="Name on card" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkout Button -->
+                <button id="checkoutBtn" class="checkout-btn">CHECK OUT</button>
+
+                <!-- Message Box -->
+                <div id="messageBox" class="message-box hidden">
+                    <!-- Message sẽ được thêm bằng JavaScript -->
                 </div>
             </div>
-
-            <div class="payment-methods">
-                <h2>Payment</h2>
-                <div class="payment-options">
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="cash">
-                        <span class="option-label">
-                            <i class="fas fa-money-bill"></i>
-                            Cash payment
-                        </span>
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="card">
-                        <span class="option-label">
-                            <i class="fas fa-credit-card"></i>
-                            Card payment
-                        </span>
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="vnpay">
-                        <span class="option-label">
-                            <img src="../images/vnpay-logo.png" alt="VN Pay">
-                            VN pay
-                        </span>
-                    </label>
-                </div>
-            </div>
-
-            <div id="paymentForm" class="payment-form hidden">
-                <!-- Payment form sẽ được thêm bằng JavaScript -->
-            </div>
-
-            <div id="messageBox" class="message-box hidden">
-                <!-- Message sẽ được thêm bằng JavaScript -->
-            </div>
-
-            <button id="checkoutBtn" class="checkout-btn">CHECK OUT</button>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <!-- Copy từ reservation.html -->
+        <div class="container">
+            <!-- Footer Navigation -->
+            <div class="footer-nav">
+                <a href="../menu/menu.html">Menu</a>
+                <a href="../events/events.html">Events</a>
+                <a href="../about/about.html">About US</a>
+                <a href="../reservation/reservation.html">Reservation</a>
+                <a href="../payment/payment.html">Order</a>
+                <a href="../contact/contact.html">Contact us</a>
+            </div>
+
+            <!-- Restaurant Description -->
+            <div class="restaurant-description">
+                <p>
+                    Discover the vibrant flavors of Mexico right here in Vietnam at El Amor Huy Anh. We are dedicated to providing
+                    an authentic dining experience with our carefully crafted dishes made from the freshest ingredients. Join us for
+                    a culinary adventure that celebrates the rich traditions of Mexican cuisine. We look forward to welcoming you!
+                </p>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="footer-hours">
+                <p>SUNDAY - THURSDAY: 11:30AM - 11PM | FRIDAY & SATURDAY: 11:30AM - 12AM</p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="footer-cta">
+                <a href="../reservation/reservation.html" class="btn btn-light btn-rounded">RESERVE NOW</a>
+                <a href="../contact/contact.html" class="btn btn-outline btn-rounded">CONTACT US</a>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-media">
+                <a href="#" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>COPYRIGHT©ELAMORHUYANH 2025</p>
+            </div>
+        </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
