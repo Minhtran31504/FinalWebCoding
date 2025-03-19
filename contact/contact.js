@@ -1,4 +1,32 @@
 $(document).ready(function() {
+    // Modal functions
+    function openModal() {
+        $('#thankYouModal').css('display', 'flex');
+        $('body').css('overflow', 'hidden'); // Prevent scrolling while modal is open
+    }
+    
+    function closeModal() {
+        $('#thankYouModal').css('display', 'none');
+        $('body').css('overflow', 'auto'); // Restore scrolling
+    }
+    
+    // Close modal when clicking the X button
+    $('.close-modal').on('click', function() {
+        closeModal();
+    });
+    
+    // Close modal when clicking the OK button
+    $('.modal-btn').on('click', function() {
+        closeModal();
+    });
+    
+    // Close modal when clicking outside the modal content
+    $('#thankYouModal').on('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+    
     // Form submission handling
     $('#contactForm').on('submit', function(e) {
         e.preventDefault();
@@ -29,8 +57,8 @@ $(document).ready(function() {
             return;
         }
         
-        // Show success message
-        alert('Thank you for contacting us! We will get back to you soon.');
+        // Show success message using modal instead of alert
+        openModal();
         
         // Reset form
         this.reset();

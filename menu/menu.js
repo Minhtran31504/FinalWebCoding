@@ -893,12 +893,12 @@ $(document).ready(function() {
     `);
 
     // Thêm thông báo không có kết quả
-    $('.container').append(`
-        <div class="no-results-msg">
-            <i class="fas fa-search"></i>
-            <p class="no-results-text">No menu items found matching your search</p>
-        </div>
-    `);
+    // $('.container').append(`
+    //     <div class="no-results-msg">
+    //         <i class="fas fa-search"></i>
+    //         <p class="no-results-text">No menu items found matching your search</p>
+    //     </div>
+    // `);
 
     // Xử lý tìm kiếm
     $('.search-bar input').on('input', function() {

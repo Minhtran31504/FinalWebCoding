@@ -152,8 +152,8 @@ $(document).ready(function() {
         e.stopPropagation();
     });
 
-    // Form validation
-    $('#bookingForm').on('submit', function(e) {
+    // Thêm xử lý sự kiện cho nút "Book Now"
+    $('.book-now-btn').click(function(e) {
         e.preventDefault();
         
         // Reset error states
@@ -164,13 +164,13 @@ $(document).ready(function() {
         
         // Validate date
         if (!$('#date').val()) {
-            showError($('#date'), 'Vui lòng chọn ngày');
+            showError($('#date'), 'Please select a date');
             isValid = false;
         } else {
             const selectedDate = new Date($('#date').val());
             const todayDate = new Date(today);
             if (selectedDate < todayDate) {
-                showError($('#date'), 'Vui lòng chọn ngày trong tương lai');
+                showError($('#date'), 'Please select a date in the future');
                 isValid = false;
             }
         }
@@ -222,32 +222,25 @@ $(document).ready(function() {
         }
         
         if (isValid) {
-            // Show success message
-            showSuccess();
+            // Thêm hiệu ứng fade out cho form
+            $('#bookingForm').addClass('fade-transition fade-out');
             
-            // Reset form
-            this.reset();
+            // Sau khi hiệu ứng hoàn thành, ẩn form và hiển thị thông báo
+            setTimeout(function() {
+                $('#bookingForm').hide();
+                $('.confirmation-message').addClass('fade-transition').show();
+            }, 500);
             
-            // You would typically send the form data to a server here
-            console.log('Form submitted successfully');
+            // Bạn có thể lưu dữ liệu vào localStorage hoặc gửi đến server ở đây
+            console.log('Reservation submitted successfully');
         }
     });
-    
+
+    // Giữ nguyên các hàm hiện có
     function showError(element, message) {
         const formGroup = element.closest('.form-group');
         formGroup.addClass('error');
         formGroup.append(`<div class="error-message">${message}</div>`);
-    }
-    
-    function showSuccess() {
-        const successMessage = $('<div class="success-message">Reservation submitted successfully! We will contact you shortly.</div>');
-        $('.reservation-form h2').after(successMessage);
-        successMessage.fadeIn();
-        
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-            successMessage.fadeOut(() => successMessage.remove());
-        }, 5000);
     }
 
     // Update footer copyright year
