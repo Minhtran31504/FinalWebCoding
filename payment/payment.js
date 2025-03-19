@@ -88,7 +88,21 @@ $(document).ready(function() {
     $('input[name="delivery"]').change(function() {
         selectedDelivery = $(this).val();
         updatePaymentOptions();
-        hideMessageAndForms();
+        
+        // Thay vì gọi hideMessageAndForms(), chỉ ẩn thông báo
+        hideMessage();
+        
+        // Hiển thị form địa chỉ giao hàng nếu chọn delivery
+        if (selectedDelivery === 'delivery') {
+            $('#deliveryAddressForm').removeClass('hidden');
+        } else {
+            $('#deliveryAddressForm').addClass('hidden');
+        }
+        
+        // Nếu đã chọn phương thức thanh toán trước đó, hiển thị lại form tương ứng
+        if (selectedPayment) {
+            showPaymentForm();
+        }
     });
 
     // Xử lý khi chọn payment method
@@ -417,6 +431,19 @@ $(document).ready(function() {
             // Lưu thông tin thanh toán vào localStorage hoặc Cookie
             // Chỉ để demo, trong thực tế không nên lưu thông tin thẻ trong localStorage
             showToast("Payment information will be remembered for future use", "info");
+        }
+    });
+
+    // Xử lý khi thay đổi loại thẻ
+    $('#cardType').change(function() {
+        const cardType = $(this).val();
+        
+        // Ẩn tất cả các form thanh toán thẻ
+        $('.card-specific-form').addClass('hidden');
+        
+        // Hiển thị form tương ứng với loại thẻ
+        if (cardType) {
+            $(`#${cardType}Form`).removeClass('hidden');
         }
     });
 });
