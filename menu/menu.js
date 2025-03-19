@@ -1350,4 +1350,42 @@ $(document).ready(function() {
     
     // Khởi tạo badge cho giỏ hàng khi trang được tải
     updateCartBadge();
+
+    // Hàm kiểm tra và kích hoạt tab từ tham số URL
+    function activateTabFromURL() {
+        // Lấy tham số 'category' từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+        
+        // Nếu có tham số category trong URL
+        if (category) {
+            // Tìm nút tab phù hợp với danh mục
+            const targetTab = $(`.tab-btn[data-category="${category}"]`);
+            
+            // Nếu có tab tương ứng, kích hoạt tab đó
+            if (targetTab.length > 0) {
+                // Loại bỏ lớp active từ tất cả các tab
+                $('.tab-btn').removeClass('active');
+                
+                // Thêm lớp active vào tab đích
+                targetTab.addClass('active');
+                
+                // Lọc các mục menu theo danh mục
+                if (category === 'all') {
+                    $('.menu-section').show();
+                } else {
+                    $('.menu-section').hide();
+                    $(`#${category}`).show();
+                }
+                
+                // Cuộn đến phần danh mục
+                $('html, body').animate({
+                    scrollTop: $(`#${category}`).offset().top - 100
+                }, 500);
+            }
+        }
+    }
+
+    // Kích hoạt tab từ URL khi trang đã tải xong
+    activateTabFromURL();
 });
