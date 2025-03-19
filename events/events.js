@@ -41,8 +41,7 @@ $(document).ready(function() {
 
     // Reserve button click handler
     $('.reserve-btn').click(function() {
-        // Add your reservation logic here
-        alert('Redirecting to reservation form...');
+        window.location.href = '../reservation/reservation.html'; // Chuyển hướng đến trang đặt chỗ
     });
 
     // Category card hover effect

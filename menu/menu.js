@@ -806,17 +806,6 @@ $(document).ready(function() {
         $(this).toggleClass('text-danger');
     });
 
-    // Add language switching buttons to the page
-    $('.menu-header').append(`
-        <div class="language-switcher" style="margin-top: 10px; display: flex; gap: 10px; color: var(--primary);">
-            <button class="language-btn active" data-language="us" style="border-radius: 50%; width: 40px; height: 40px; background-color: var(--accent); color: var(--white); border: none; cursor: pointer; transition: background-color 0.3s;">
-                US
-            </button>
-            <button class="language-btn" data-language="vi" style="border-radius: 50%; width: 40px; height: 40px; background-color: var(--accent); color: var(--white); border: none; cursor: pointer; transition: background-color 0.3s;">
-                VI
-            </button>
-        </div>
-    `);
     // Language switching event handler
     $(document).on('click', '.language-btn', function() {
         currentLanguage = $(this).data('language');
