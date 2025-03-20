@@ -350,10 +350,27 @@ img {
     font-size: 20px;
 }
 
-/* Chef's Recommendation Section */
+/* Chef's Recommendation Carousel */
 .chef-recommendation {
     background-color: var(--primary);
     padding: 60px 0;
+}
+
+.recommendation-carousel {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.recommendation-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.recommendation-slide {
+    min-width: 100%;
+    padding: 0 15px;
 }
 
 .recommendation-content {
@@ -422,6 +439,54 @@ img {
 .recommendation-image img {
     border-radius: 8px;
     max-height: 400px;
+    object-fit: cover;
+}
+
+.recommendation-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.recommendation-prev,
+.recommendation-next {
+    background-color: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.recommendation-prev:hover,
+.recommendation-next:hover {
+    background-color: var(--gold);
+    color: var(--primary);
+}
+
+.recommendation-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.recommendation-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.recommendation-dot.active {
+    background-color: var(--gold);
 }
 
 /* Upcoming Event Section */
@@ -609,6 +674,20 @@ img {
         width: 10px;
         height: 10px;
         margin: 0 4px;
+    }
+    
+    .recommendation-content {
+        flex-direction: column;
+    }
+    
+    .recommendation-image {
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .recommendation-image img {
+        width: 100%;
+        max-height: 300px;
     }
 }
 

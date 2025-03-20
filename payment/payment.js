@@ -165,6 +165,27 @@ $(document).ready(function() {
             return;
         }
         
+        // Kiểm tra tính hợp lệ của form thanh toán nếu phương thức thanh toán là card hoặc vnpay
+        if (selectedPayment === 'card') {
+            let isValid = true;
+            
+            // Chỉ kiểm tra các trường required và đang hiển thị (không thuộc class hidden)
+            $('#cardPaymentForm input[required]:visible, #cardPaymentForm select[required]:visible').each(function() {
+                if (!$(this).val()) {
+                    isValid = false;
+                    $(this).addClass('error');
+                    console.log("Trường này chưa được điền:", $(this).attr('placeholder') || $(this).prev('label').text());
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+            
+            if (!isValid) {
+                showToast("Vui lòng điền đầy đủ thông tin thanh toán", "warning");
+                return;
+            }
+        }
+        
         // Validate delivery address nếu người dùng chọn delivery
         if (selectedDelivery === 'delivery' && !validateDeliveryAddress()) {
             showToast("Please enter delivery address", "warning");
@@ -422,10 +443,10 @@ $(document).ready(function() {
             }
         });
         
-        if (!isValid) {
-            showToast("Please fill in all required fields", "warning");
-            return;
-        }
+        // if (!isValid) {
+        //     showToast("Please fill in all required fields", "warning");
+        //     return;
+        // }
         
         // Xử lý thanh toán
         $('#checkoutBtn').click();
@@ -468,5 +489,10 @@ $(document).ready(function() {
         if (cardType) {
             $(`#${cardType}Form`).removeClass('hidden');
         }
+    });
+
+    // Xử lý input khi thay đổi để xóa trạng thái lỗi cho form thanh toán
+    $('#cardPaymentForm input, #cardPaymentForm select').on('input change', function() {
+        $(this).removeClass('error');
     });
 });

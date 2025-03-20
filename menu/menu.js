@@ -1,115 +1,115 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Menu data
     const menuData = {
         appetizers: [
             {
                 "id": 1,
                 "name": {
-                  "vi": "Elote",
-                  "us": "Elote"
+                    "vi": "Elote",
+                    "us": "Elote"
                 },
                 "description": {
-                  "vi": "Ngô nướng trên lõi được phết bơ và sốt mayonnaise, sau đó rắc phô mai Cotija vụn và bột ớt. Hoàn thiện với một chút nước cốt chanh tươi, món ăn vặt đường phố cổ điển này mang đến sự kết hợp hoàn hảo của hương vị kem, chua và cay.",
-                  "us": "Grilled corn on the cob slathered in butter and mayonnaise, then generously sprinkled with crumbled Cotija cheese and dusted with chili powder. Finished off with a squeeze of fresh lime juice, this classic street snack offers a perfect blend of creamy, tangy, and spicy flavors."
+                    "vi": "Ngô nướng trên lõi được phết bơ và sốt mayonnaise, sau đó rắc phô mai Cotija vụn và bột ớt. Hoàn thiện với một chút nước cốt chanh tươi, món ăn vặt đường phố cổ điển này mang đến sự kết hợp hoàn hảo của hương vị kem, chua và cay.",
+                    "us": "Grilled corn on the cob slathered in butter and mayonnaise, then generously sprinkled with crumbled Cotija cheese and dusted with chili powder. Finished off with a squeeze of fresh lime juice, this classic street snack offers a perfect blend of creamy, tangy, and spicy flavors."
                 },
                 "price": {
-                  "vnd": 70000,
-                  "usd": 2.75
+                    "vnd": 70000,
+                    "usd": 2.75
                 },
                 "image": "../images/menu/appetizers/Elote.jpg",
                 "rating": 4.7,
                 "calories": 325
-              },
-              {
+            },
+            {
                 "id": 2,
                 "name": {
-                  "vi": "Sopes",
-                  "us": "Sopes"
+                    "vi": "Sopes",
+                    "us": "Sopes"
                 },
                 "description": {
-                  "vi": "Bánh ngô dày, nhỏ có viền cao, giòn bên ngoài và mềm bên trong. Chúng thường được phủ đậu nghiền, thịt hoặc gà xé, rau diếp tươi, phô mai vụn và hoàn thiện với nước sốt salsa và một chút kem chua. Mỗi miếng mang đến sự pha trộn tuyệt vời của kết cấu và hương vị.",
-                  "us": "Thick, small corn cakes with raised edges that are crisp on the outside and soft on the inside. They are typically topped with refried beans, shredded meat or chicken, fresh lettuce, crumbled cheese, and finished with a drizzle of salsa and a dollop of sour cream. Each bite delivers a delightful mix of textures and flavors."
+                    "vi": "Bánh ngô dày, nhỏ có viền cao, giòn bên ngoài và mềm bên trong. Chúng thường được phủ đậu nghiền, thịt hoặc gà xé, rau diếp tươi, phô mai vụn và hoàn thiện với nước sốt salsa và một chút kem chua. Mỗi miếng mang đến sự pha trộn tuyệt vời của kết cấu và hương vị.",
+                    "us": "Thick, small corn cakes with raised edges that are crisp on the outside and soft on the inside. They are typically topped with refried beans, shredded meat or chicken, fresh lettuce, crumbled cheese, and finished with a drizzle of salsa and a dollop of sour cream. Each bite delivers a delightful mix of textures and flavors."
                 },
                 "price": {
-                  "vnd": 75000,
-                  "usd": 2.95
+                    "vnd": 75000,
+                    "usd": 2.95
                 },
                 "image": "../images/menu/appetizers/Sopes.jpg",
                 "rating": 4.6,
                 "calories": 375
-              },
-              {
+            },
+            {
                 "id": 3,
                 "name": {
-                  "vi": "Empanadas",
-                  "us": "Empanadas"
+                    "vi": "Empanadas",
+                    "us": "Empanadas"
                 },
                 "description": {
-                  "vi": "Túi bánh vỏ giòn, vàng óng nhân hỗn hợp mặn có thể bao gồm thịt bò xay gia vị, gà xé, phô mai hoặc rau củ. Chúng được nướng hoặc chiên cho đến khi hoàn hảo giòn, mang lại vị giòn thỏa mãn với mỗi miếng cắn.",
-                  "us": "Golden, flaky pastry pockets filled with a savory mixture that can include spiced ground beef, shredded chicken, cheese, or vegetables. They are either baked or fried until perfectly crispy, offering a satisfying crunch with every bite."
+                    "vi": "Túi bánh vỏ giòn, vàng óng nhân hỗn hợp mặn có thể bao gồm thịt bò xay gia vị, gà xé, phô mai hoặc rau củ. Chúng được nướng hoặc chiên cho đến khi hoàn hảo giòn, mang lại vị giòn thỏa mãn với mỗi miếng cắn.",
+                    "us": "Golden, flaky pastry pockets filled with a savory mixture that can include spiced ground beef, shredded chicken, cheese, or vegetables. They are either baked or fried until perfectly crispy, offering a satisfying crunch with every bite."
                 },
                 "price": {
-                  "vnd": 65000,
-                  "usd": 2.55
+                    "vnd": 65000,
+                    "usd": 2.55
                 },
                 "image": "../images/menu/appetizers/Empanadas.jpg",
                 "rating": 4.8,
                 "calories": 275
-              },
-              {
+            },
+            {
                 "id": 4,
                 "name": {
-                  "vi": "Tostadas",
-                  "us": "Tostadas"
+                    "vi": "Tostadas",
+                    "us": "Tostadas"
                 },
                 "description": {
-                  "vi": "Bánh ngô giòn, phẳng chiên làm nền cho các loại nhân như đậu nghiền, gà hoặc thịt bò xé, rau diếp tươi, cà chua, và phô mai vụn. Một chút kem chua kết hợp tất cả các hương vị, tạo nên một món ăn giòn và thơm ngon vừa thỏa mãn vừa đầy hương vị.",
-                  "us": "Crisp, flat-fried tortillas that serve as the base for toppings such as refried beans, shredded chicken or beef, fresh lettuce, tomatoes, and crumbled cheese. A dollop of sour cream ties all the flavors together, creating a crunchy and savory dish that is as satisfying as it is flavorful."
+                    "vi": "Bánh ngô giòn, phẳng chiên làm nền cho các loại nhân như đậu nghiền, gà hoặc thịt bò xé, rau diếp tươi, cà chua, và phô mai vụn. Một chút kem chua kết hợp tất cả các hương vị, tạo nên một món ăn giòn và thơm ngon vừa thỏa mãn vừa đầy hương vị.",
+                    "us": "Crisp, flat-fried tortillas that serve as the base for toppings such as refried beans, shredded chicken or beef, fresh lettuce, tomatoes, and crumbled cheese. A dollop of sour cream ties all the flavors together, creating a crunchy and savory dish that is as satisfying as it is flavorful."
                 },
                 "price": {
-                  "vnd": 80000,
-                  "usd": 3.15
+                    "vnd": 80000,
+                    "usd": 3.15
                 },
                 "image": "../images/menu/appetizers/Tostadas.jpg",
                 "rating": 4.5,
                 "calories": 425
-              },
-              {
+            },
+            {
                 "id": 5,
                 "name": {
-                  "vi": "Taquitos",
-                  "us": "Taquitos"
+                    "vi": "Taquitos",
+                    "us": "Taquitos"
                 },
                 "description": {
-                  "vi": "Bánh tortilla cuộn với nhân thịt thơm (bò hoặc gà) được chiên sâu cho đến khi vàng giòn. Những món ăn nhỏ này được phục vụ kèm với guacamole chua hoặc salsa để chấm, làm cho chúng trở thành món ăn nhẹ vui miệng và đầy hương vị.",
-                  "us": "Rolled tortillas filled with seasoned, shredded meat (beef or chicken) that are deep-fried until golden and crispy. These bite-sized delights are served with a side of tangy guacamole or salsa for dipping, making them a fun and flavorful snack."
+                    "vi": "Bánh tortilla cuộn với nhân thịt thơm (bò hoặc gà) được chiên sâu cho đến khi vàng giòn. Những món ăn nhỏ này được phục vụ kèm với guacamole chua hoặc salsa để chấm, làm cho chúng trở thành món ăn nhẹ vui miệng và đầy hương vị.",
+                    "us": "Rolled tortillas filled with seasoned, shredded meat (beef or chicken) that are deep-fried until golden and crispy. These bite-sized delights are served with a side of tangy guacamole or salsa for dipping, making them a fun and flavorful snack."
                 },
                 "price": {
-                  "vnd": 70000,
-                  "usd": 2.75
+                    "vnd": 70000,
+                    "usd": 2.75
                 },
                 "image": "../images/menu/appetizers/Taquitos.jpg",
                 "rating": 4.6,
                 "calories": 325
-              },
-              {
+            },
+            {
                 "id": 6,
                 "name": {
-                  "vi": "Ceviche",
-                  "us": "Ceviche"
+                    "vi": "Ceviche",
+                    "us": "Ceviche"
                 },
                 "description": {
-                  "vi": "Món ăn nhẹ và sảng khoái với hải sản tươi (thường là cá hoặc tôm) ngâm trong nước cốt chanh. Trộn với hành thái nhỏ, cà chua cắt hạt lựu, ớt, và rau mùi tươi, món khai vị mát lạnh này mang đến hương vị chua, thanh và hơi cay hoàn hảo cho món khai vị.",
-                  "us": "A light and refreshing dish featuring fresh seafood (typically fish or shrimp) marinated in lime juice. Mixed with finely chopped onions, diced tomatoes, chili peppers, and fresh cilantro, this chilled delicacy offers a zesty, tangy, and slightly spicy flavor profile perfect for a starter."
+                    "vi": "Món ăn nhẹ và sảng khoái với hải sản tươi (thường là cá hoặc tôm) ngâm trong nước cốt chanh. Trộn với hành thái nhỏ, cà chua cắt hạt lựu, ớt, và rau mùi tươi, món khai vị mát lạnh này mang đến hương vị chua, thanh và hơi cay hoàn hảo cho món khai vị.",
+                    "us": "A light and refreshing dish featuring fresh seafood (typically fish or shrimp) marinated in lime juice. Mixed with finely chopped onions, diced tomatoes, chili peppers, and fresh cilantro, this chilled delicacy offers a zesty, tangy, and slightly spicy flavor profile perfect for a starter."
                 },
                 "price": {
-                  "vnd": 85000,
-                  "usd": 3.35
+                    "vnd": 85000,
+                    "usd": 3.35
                 },
                 "image": "../images/menu/appetizers/Ceviche.jpg",
                 "rating": 4.9,
                 "calories": 175
-              }
+            }
         ],
         mainCourses: [
             {
@@ -824,15 +824,15 @@ $(document).ready(function() {
         // Kiểm tra xem item.name và item.description có phải là đối tượng không
         const name = typeof item.name === 'object' ? (item.name[currentLanguage] || item.name.us) : item.name;
         const description = typeof item.description === 'object' ? (item.description[currentLanguage] || item.description.us) : item.description;
-        
+
         // Định dạng giá theo ngôn ngữ
-        const price = currentLanguage === 'vi' ? 
-            `${typeof item.price === 'object' ? item.price.vnd.toLocaleString() : (item.price * 25000).toLocaleString()}đ` : 
+        const price = currentLanguage === 'vi' ?
+            `${typeof item.price === 'object' ? item.price.vnd.toLocaleString() : (item.price * 25000).toLocaleString()}đ` :
             `$${typeof item.price === 'object' ? item.price.usd : item.price}`;
-        
+
         // Nút đặt hàng theo ngôn ngữ
         const orderButtonText = currentLanguage === 'vi' ? 'THÊM VÀO GIỎ HÀNG' : 'ADD TO CART';
-        
+
         return `
             <div class="menu-item">
                 <div class="menu-item-image">
@@ -866,7 +866,7 @@ $(document).ready(function() {
     function populateMenuSection(sectionId, items) {
         const menuGrid = $(`#${sectionId} .menu-grid`);
         menuGrid.empty();
-        
+
         items.forEach(item => {
             menuGrid.append(createMenuItem(item));
         });
@@ -901,28 +901,28 @@ $(document).ready(function() {
     // `);
 
     // Xử lý tìm kiếm
-    $('.search-bar input').on('input', function() {
+    $('.search-bar input').on('input', function () {
         const searchTerm = $(this).val().toLowerCase().trim();
-        
+
         // Hiển thị/ẩn nút xóa
         if (searchTerm.length > 0) {
             $('.clear-search').show();
         } else {
             $('.clear-search').hide();
         }
-        
+
         // Thực hiện tìm kiếm
         performSearch(searchTerm);
     });
 
     // Xử lý khi nhấn nút tìm kiếm
-    $('.search-btn').on('click', function() {
+    $('.search-btn').on('click', function () {
         const searchTerm = $('.search-bar input').val().toLowerCase().trim();
         performSearch(searchTerm);
     });
 
     // Xử lý khi nhấn Enter trong ô tìm kiếm
-    $('.search-bar input').on('keypress', function(e) {
+    $('.search-bar input').on('keypress', function (e) {
         if (e.which === 13) {
             const searchTerm = $(this).val().toLowerCase().trim();
             performSearch(searchTerm);
@@ -930,16 +930,16 @@ $(document).ready(function() {
     });
 
     // Xử lý khi nhấn nút xóa
-    $('.clear-search').on('click', function() {
+    $('.clear-search').on('click', function () {
         $('.search-bar input').val('');
         $(this).hide();
         resetSearch();
     });
 
     // Thêm hiệu ứng khi focus vào ô tìm kiếm
-    $('.search-bar input').on('focus', function() {
+    $('.search-bar input').on('focus', function () {
         $('.search-bar').addClass('focused');
-    }).on('blur', function() {
+    }).on('blur', function () {
         $('.search-bar').removeClass('focused');
     });
 
@@ -952,76 +952,76 @@ $(document).ready(function() {
 
         // Đếm số kết quả khớp
         let matchCount = 0;
-        
+
         // Tìm kiếm trong tất cả các món
-        $('.menu-item').each(function() {
+        $('.menu-item').each(function () {
             const $item = $(this);
             const itemName = $item.find('.menu-item-name').text().toLowerCase();
             const itemDesc = $item.find('.menu-item-description').text().toLowerCase();
-            
+
             if (itemName.includes(searchTerm) || itemDesc.includes(searchTerm)) {
                 $item.show().css('opacity', 0).animate({ opacity: 1 }, 500); // Thêm hiệu ứng fade-in
                 $item.addClass('search-match');
-                
+
                 // Highlight từ khóa tìm kiếm
                 highlightSearchTerm($item, '.menu-item-name', itemName, searchTerm);
                 highlightSearchTerm($item, '.menu-item-description', itemDesc, searchTerm);
-                
+
                 matchCount++;
             } else {
                 $item.hide();
                 $item.removeClass('search-match');
-                
+
                 // Xóa highlighting
-                $item.find('.menu-item-name, .menu-item-description').each(function() {
+                $item.find('.menu-item-name, .menu-item-description').each(function () {
                     $(this).html($(this).text());
                 });
             }
         });
-        
+
         // Hiển thị/ẩn thông báo không có kết quả
         if (matchCount === 0) {
             $('.no-results-msg').show();
             $('.no-results-text').text(
-                currentLanguage === 'vi' ? 
-                'Không tìm thấy món ăn nào phù hợp với tìm kiếm của bạn' : 
-                'No menu items found matching your search'
+                currentLanguage === 'vi' ?
+                    'Không tìm thấy món ăn nào phù hợp với tìm kiếm của bạn' :
+                    'No menu items found matching your search'
             );
         } else {
             $('.no-results-msg').hide();
         }
-        
+
         // Cập nhật số lượng kết quả tìm kiếm
         if (matchCount > 0) {
-            const resultText = currentLanguage === 'vi' ? 
-                `Tìm thấy ${matchCount} kết quả` : 
+            const resultText = currentLanguage === 'vi' ?
+                `Tìm thấy ${matchCount} kết quả` :
                 `Found ${matchCount} result${matchCount !== 1 ? 's' : ''}`;
             $('.search-results-count').text(resultText).show();
         } else {
-            const noResultText = currentLanguage === 'vi' ? 
-                'Không tìm thấy kết quả nào' : 
+            const noResultText = currentLanguage === 'vi' ?
+                'Không tìm thấy kết quả nào' :
                 'No results found';
             $('.search-results-count').text(noResultText).show();
         }
-        
+
         // Hiển thị tất cả các section nhưng chỉ hiển thị các món khớp
-        $('.menu-section').each(function() {
+        $('.menu-section').each(function () {
             const sectionId = $(this).attr('id');
             const hasResults = $(this).find('.menu-item:visible').length > 0;
-            
+
             if (hasResults) {
                 $(this).show();
-                
+
                 // Cập nhật tab tương ứng
                 $('.tab-btn[data-category="' + sectionId + '"]').removeClass('no-results');
             } else {
                 $(this).hide();
-                
+
                 // Cập nhật tab tương ứng
                 $('.tab-btn[data-category="' + sectionId + '"]').addClass('no-results');
             }
         });
-        
+
         // Reset active tab
         $('.tab-btn').removeClass('active');
         $('.tab-btn[data-category="all"]').addClass('active');
@@ -1031,14 +1031,14 @@ $(document).ready(function() {
     function highlightSearchTerm($item, selector, text, searchTerm) {
         const $element = $item.find(selector);
         const originalText = $element.text();
-        
+
         if (!text.includes(searchTerm)) return;
-        
+
         const regex = new RegExp(searchTerm, 'gi');
-        const highlightedText = originalText.replace(regex, match => 
+        const highlightedText = originalText.replace(regex, match =>
             `<span">${match}</span>`
         );
-        
+
         $element.html(highlightedText);
     }
 
@@ -1046,24 +1046,24 @@ $(document).ready(function() {
     function resetSearch() {
         // Hiển thị lại tất cả các món
         $('.menu-item').show().removeClass('search-match');
-        
+
         // Xóa highlighting
-        $('.menu-item-name, .menu-item-description').each(function() {
+        $('.menu-item-name, .menu-item-description').each(function () {
             $(this).html($(this).text());
         });
-        
+
         // Hiển thị lại tất cả các section
         $('.menu-section').show();
-        
+
         // Ẩn thông báo không có kết quả
         $('.no-results-msg').hide();
-        
+
         // Xóa thông báo kết quả tìm kiếm
         $('.search-results-count').text('').hide();
-        
+
         // Reset trạng thái tab
         $('.tab-btn').removeClass('no-results');
-        
+
         // Chỉ hiển thị section của tab đang active
         const activeCategory = $('.tab-btn.active').data('category');
         if (activeCategory && activeCategory !== 'all') {
@@ -1073,17 +1073,17 @@ $(document).ready(function() {
     }
 
     // Tab switching functionality
-    $('.tab-btn').click(function() {
+    $('.tab-btn').click(function () {
         // Reset tìm kiếm khi chuyển tab
         $('.search-bar input').val('');
         $('.clear-search').hide();
         resetSearch();
-        
+
         $('.tab-btn').removeClass('active');
         $(this).addClass('active');
-        
+
         const category = $(this).data('category');
-        
+
         if (category === 'all') {
             $('.menu-section').show().css('opacity', 0).animate({ opacity: 1 }, 500); // Hiển thị tất cả với hiệu ứng
         } else {
@@ -1093,33 +1093,33 @@ $(document).ready(function() {
     });
 
     // Like button functionality
-    $(document).on('click', '.fa-heart', function() {
+    $(document).on('click', '.fa-heart', function () {
         $(this).toggleClass('fa-regular fa-solid');
         $(this).toggleClass('text-danger');
     });
 
     // Language switching event handler
-    $(document).on('click', '.language-btn', function() {
+    $(document).on('click', '.language-btn', function () {
         currentLanguage = $(this).data('language');
-        
+
         // Refresh all menu sections with new language
         populateMenuSection('appetizers', menuData.appetizers);
         populateMenuSection('main-courses', menuData.mainCourses);
         populateMenuSection('drinks', menuData.drinks);
         populateMenuSection('dessert', menuData.dessert);
-        
+
         // Update UI elements for language
         $('.language-btn').removeClass('active');
         $(this).addClass('active');
     });
 
     // Chef's Recommendation functionality
-    $('.buy-now-btn').click(function() {
+    $('.buy-now-btn').click(function () {
         // Xử lý khi người dùng nhấn nút "BUY NOW"
         alert('Đã thêm Risotto ai Funghi vào giỏ hàng của bạn!');
     });
 
-    $('.learn-more-btn').click(function() {
+    $('.learn-more-btn').click(function () {
         // Xử lý khi người dùng nhấn nút "LEARN MORE"
         // Có thể chuyển đến trang chi tiết hoặc hiển thị modal
         alert('Xem thêm thông tin về Risotto ai Funghi');
@@ -1145,9 +1145,9 @@ $(document).ready(function() {
     }
 
     // Cập nhật ngôn ngữ cho phần giới thiệu khi chuyển đổi ngôn ngữ
-    $(document).on('click', '.language-btn', function() {
+    $(document).on('click', '.language-btn', function () {
         // ... existing language switching code ...
-        
+
         // Cập nhật phần giới thiệu món ăn
         updateRecommendationLanguage();
     });
@@ -1156,34 +1156,34 @@ $(document).ready(function() {
     updateRecommendationLanguage();
 
     // Smooth scrolling for anchor links
-    $('a[href^="#"]').on('click', function(event) {
+    $('a[href^="#"]').on('click', function (event) {
         event.preventDefault();
-        
+
         const target = $($.attr(this, 'href'));
-        
+
         if (target.length) {
             $('html, body').animate({
                 scrollTop: target.offset().top
             }, 800);
         }
     });
-    
+
     // Update footer copyright year dynamically
     const currentYear = new Date().getFullYear();
     $('.copyright p').text(`COPYRIGHT©ELAMORHUYANH ${currentYear}`);
 
     // Thêm xử lý sự kiện cho nút dấu chấm than và nút ORDER NOW
-    $(document).on('click', '.fa-circle-exclamation, .order-btn', function() {
+    $(document).on('click', '.fa-circle-exclamation, .order-btn', function () {
         // Tìm phần tử menu-item gần nhất
         const menuItem = $(this).closest('.menu-item');
-        
+
         // Lấy thông tin món ăn
         const itemName = menuItem.find('.menu-item-name').text();
         const itemDescription = menuItem.find('.menu-item-description').text();
         const itemPrice = menuItem.find('.menu-item-price').text();
         const itemImage = menuItem.find('img').attr('src');
         const itemRating = menuItem.find('.menu-item-rating').text().length / 2; // Đếm số sao
-        
+
         // Lưu thông tin vào localStorage
         const itemData = {
             name: itemName,
@@ -1193,7 +1193,7 @@ $(document).ready(function() {
             rating: itemRating,
             language: currentLanguage
         };
-        
+
         localStorage.setItem('selectedItem', JSON.stringify(itemData));
     });
 
@@ -1203,33 +1203,33 @@ $(document).ready(function() {
         if ($('#toast-container').length === 0) {
             $('body').append('<div id="toast-container"></div>');
         }
-        
+
         // Tạo toast mới
         const toast = $(`<div class="toast" style="background-color: green;">${message}</div>`);
         $('#toast-container').append(toast);
-        
+
         // Hiển thị và xóa sau 3 giây
-        setTimeout(function() {
+        setTimeout(function () {
             toast.addClass('show');
-            setTimeout(function() {
+            setTimeout(function () {
                 toast.removeClass('show');
-                setTimeout(function() {
+                setTimeout(function () {
                     toast.remove();
                 }, 300);
             }, 3000);
         }, 10);
     }
-    
+
     // Hàm thêm sản phẩm vào giỏ hàng
     function addToCart(item) {
         // Lấy giỏ hàng hiện tại từ localStorage hoặc tạo mới nếu chưa có
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
+
         // Kiểm tra xem món ăn đã có trong giỏ hàng chưa
-        const existingItemIndex = cart.findIndex(cartItem => 
+        const existingItemIndex = cart.findIndex(cartItem =>
             cartItem.name === item.name && cartItem.price === item.price
         );
-        
+
         if (existingItemIndex !== -1) {
             // Nếu đã có, tăng số lượng
             cart[existingItemIndex].quantity += 1;
@@ -1238,49 +1238,49 @@ $(document).ready(function() {
             item.quantity = 1;
             cart.push(item);
         }
-        
+
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-        
+
         // Cập nhật số lượng hiển thị trên biểu tượng giỏ hàng
         updateCartBadge();
-        
+
         // Hiển thị thông báo
-        const message = currentLanguage === 'vi' ? 
-            'Thêm vào giỏ hàng thành công' : 
+        const message = currentLanguage === 'vi' ?
+            'Thêm vào giỏ hàng thành công' :
             'Successfully added to cart';
         showToast(message);
     }
-    
+
     // Hàm cập nhật số lượng trên biểu tượng giỏ hàng
     function updateCartBadge() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        
+
         // Nếu đã có badge thì cập nhật, nếu chưa thì tạo mới
         if ($('.cart-badge').length === 0) {
             $('.fa-shopping-cart').after('<span class="cart-badge"></span>');
         }
-        
+
         if (totalItems > 0) {
             $('.cart-badge').text(totalItems).show();
         } else {
             $('.cart-badge').hide();
         }
     }
-    
+
     // Xử lý sự kiện khi người dùng nhấn vào nút "ADD TO CART"
-    $(document).on('click', '.order-btn', function() {
+    $(document).on('click', '.order-btn', function () {
         // Tìm phần tử menu-item gần nhất
         const menuItem = $(this).closest('.menu-item');
-        
+
         // Lấy thông tin món ăn
         const itemName = menuItem.find('.menu-item-name').text();
         const itemDescription = menuItem.find('.menu-item-description').text();
         const itemPrice = menuItem.find('.menu-item-price').text();
         const itemImage = menuItem.find('img').attr('src');
         const itemRating = menuItem.find('.menu-item-rating').text().trim().length / 2; // Đếm số sao
-        
+
         // Tạo đối tượng chứa thông tin món ăn
         const itemData = {
             name: itemName,
@@ -1290,17 +1290,17 @@ $(document).ready(function() {
             rating: itemRating,
             language: currentLanguage
         };
-        
+
         // Thêm vào giỏ hàng
         addToCart(itemData);
     });
-    
+
     // Xử lý sự kiện khi người dùng nhấn vào biểu tượng giỏ hàng
-    $(document).on('click', '.fa-shopping-cart', function() {
+    $(document).on('click', '.fa-shopping-cart', function () {
         // Chuyển hướng đến trang payment.html
         window.location.href = '../payment/payment.html';
     });
-    
+
     // Thêm CSS cho toast
     $('head').append(`
         <style>
@@ -1347,7 +1347,7 @@ $(document).ready(function() {
             }
         </style>
     `);
-    
+
     // Khởi tạo badge cho giỏ hàng khi trang được tải
     updateCartBadge();
 
@@ -1356,20 +1356,20 @@ $(document).ready(function() {
         // Lấy tham số 'category' từ URL
         const urlParams = new URLSearchParams(window.location.search);
         const category = urlParams.get('category');
-        
+
         // Nếu có tham số category trong URL
         if (category) {
             // Tìm nút tab phù hợp với danh mục
             const targetTab = $(`.tab-btn[data-category="${category}"]`);
-            
+
             // Nếu có tab tương ứng, kích hoạt tab đó
             if (targetTab.length > 0) {
                 // Loại bỏ lớp active từ tất cả các tab
                 $('.tab-btn').removeClass('active');
-                
+
                 // Thêm lớp active vào tab đích
                 targetTab.addClass('active');
-                
+
                 // Lọc các mục menu theo danh mục
                 if (category === 'all') {
                     $('.menu-section').show();
@@ -1377,7 +1377,7 @@ $(document).ready(function() {
                     $('.menu-section').hide();
                     $(`#${category}`).show();
                 }
-                
+
                 // Cuộn đến phần danh mục
                 $('html, body').animate({
                     scrollTop: $(`#${category}`).offset().top - 100

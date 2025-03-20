@@ -143,4 +143,98 @@ $(document).ready(function() {
     
     // Add fade-in class to elements
     $('.section-title, .category-card, .recommendation-content, .event-banner').addClass('fade-in').css('opacity', '0');
+    
+    // Recommendation Carousel
+    function setupRecommendationCarousel() {
+        const track = $('.recommendation-track');
+        const slides = $('.recommendation-slide');
+        const dotsContainer = $('.recommendation-dots');
+        const prevButton = $('.recommendation-prev');
+        const nextButton = $('.recommendation-next');
+        let currentIndex = 0;
+        
+        // Tạo dots cho từng món ăn
+        slides.each(function(index) {
+            dotsContainer.append(`<div class="recommendation-dot ${index === 0 ? 'active' : ''}"></div>`);
+        });
+        
+        const dots = $('.recommendation-dot');
+        
+        // Hàm chuyển đến món ăn cụ thể
+        function moveToSlide(index) {
+            if (index < 0) {
+                index = slides.length - 1;
+            } else if (index >= slides.length) {
+                index = 0;
+            }
+            
+            currentIndex = index;
+            track.css('transform', `translateX(-${currentIndex * 100}%)`);
+            
+            // Cập nhật trạng thái dot
+            dots.removeClass('active');
+            dots.eq(currentIndex).addClass('active');
+        }
+        
+        // Xử lý sự kiện nút prev
+        prevButton.on('click', function() {
+            moveToSlide(currentIndex - 1);
+        });
+        
+        // Xử lý sự kiện nút next
+        nextButton.on('click', function() {
+            moveToSlide(currentIndex + 1);
+        });
+        
+        // Xử lý sự kiện click vào dot
+        dots.on('click', function() {
+            const dotIndex = $(this).index();
+            moveToSlide(dotIndex);
+        });
+        
+        // Xử lý sự kiện swipe trên thiết bị di động
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        $('.recommendation-carousel').on('touchstart', function(event) {
+            touchStartX = event.originalEvent.touches[0].clientX;
+        });
+        
+        $('.recommendation-carousel').on('touchend', function(event) {
+            touchEndX = event.originalEvent.changedTouches[0].clientX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe sang trái -> Next slide
+                moveToSlide(currentIndex + 1);
+            }
+            
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe sang phải -> Prev slide
+                moveToSlide(currentIndex - 1);
+            }
+        }
+        
+        // Tự động chuyển slide sau mỗi 5 giây
+        let slideInterval = setInterval(function() {
+            moveToSlide(currentIndex + 1);
+        }, 5000);
+        
+        // Dừng tự động chuyển khi hover vào carousel
+        $('.recommendation-carousel').hover(
+            function() { clearInterval(slideInterval); },
+            function() { 
+                slideInterval = setInterval(function() {
+                    moveToSlide(currentIndex + 1);
+                }, 5000);
+            }
+        );
+    }
+    
+    // Initialize recommendation carousel
+    setupRecommendationCarousel();
 });
