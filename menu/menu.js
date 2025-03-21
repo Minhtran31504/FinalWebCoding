@@ -1394,6 +1394,10 @@ $(document).ready(function () {
         // Tìm phần tử menu-item gần nhất
         const menuItem = $(this).closest('.menu-item');
 
+        // Tìm section (danh mục) chứa sản phẩm này
+        const section = menuItem.closest('.menu-section');
+        const category = section.attr('id');
+
         // Lấy thông tin món ăn
         const itemName = menuItem.find('.menu-item-name').text();
         const itemDescription = menuItem.find('.menu-item-description').text();
@@ -1408,10 +1412,12 @@ $(document).ready(function () {
             price: itemPrice,
             image: itemImage,
             rating: itemRating,
-            language: currentLanguage
+            language: currentLanguage,
+            category: category // Thêm thông tin về danh mục
         };
 
         localStorage.setItem('selectedItem', JSON.stringify(itemData));
+        localStorage.setItem('menuData', JSON.stringify(menuData)); // Lưu toàn bộ dữ liệu menu để trang chi tiết có thể sử dụng
 
         // Chuyển hướng đến trang chi tiết món ăn
         window.location.href = '../item-details/item-details.html';

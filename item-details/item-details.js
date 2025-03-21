@@ -1,10 +1,16 @@
 $(document).ready(function () {
     // Lấy thông tin món ăn từ localStorage
     const itemData = JSON.parse(localStorage.getItem('selectedItem'));
+    const menuData = JSON.parse(localStorage.getItem('menuData'));
 
     if (itemData) {
         // Cập nhật thông tin món ăn trên trang
         updateItemDetails(itemData);
+
+        // Hiển thị sản phẩm tương tự
+        if (menuData && itemData.category) {
+            displayRelatedProducts(itemData, menuData);
+        }
     } else {
         // Nếu không có dữ liệu, chuyển hướng về trang menu
         window.location.href = '../menu/menu.html';
@@ -49,6 +55,64 @@ $(document).ready(function () {
 
     // Cập nhật badge giỏ hàng
     updateCartBadge();
+
+    // Xử lý sự kiện khi click vào sản phẩm tương tự
+    $(document).on('click', '.related-product', function (e) {
+        // Nếu click vào nút thì không chuyển hướng trang
+        if ($(e.target).hasClass('related-product-button')) {
+            e.stopPropagation();
+            return;
+        }
+
+        const productId = $(this).data('id');
+        const categoryKey = getCategoryKey(itemData.category);
+        const product = menuData[categoryKey].find(item => item.id === productId);
+
+        if (product) {
+            const relatedProductData = {
+                name: typeof product.name === 'object' ? (product.name[itemData.language] || product.name.us) : product.name,
+                description: typeof product.description === 'object' ? (product.description[itemData.language] || product.description.us) : product.description,
+                price: itemData.language === 'vi' ?
+                    `${typeof product.price === 'object' ? product.price.vnd.toLocaleString() : (product.price * 25000).toLocaleString()}đ` :
+                    `$${typeof product.price === 'object' ? product.price.usd : product.price}`,
+                image: product.image,
+                rating: product.rating,
+                language: itemData.language,
+                category: itemData.category
+            };
+
+            localStorage.setItem('selectedItem', JSON.stringify(relatedProductData));
+
+            // Refresh trang để hiển thị sản phẩm mới
+            location.reload();
+        }
+    });
+
+    // Xử lý sự kiện khi click vào nút Thêm vào giỏ hàng của sản phẩm tương tự
+    $(document).on('click', '.related-product-button', function (e) {
+        e.stopPropagation(); // Ngăn sự kiện click lan ra ngoài
+
+        const productElement = $(this).closest('.related-product');
+        const productId = productElement.data('id');
+        const categoryKey = getCategoryKey(itemData.category);
+        const product = menuData[categoryKey].find(item => item.id === productId);
+
+        if (product) {
+            const productData = {
+                name: typeof product.name === 'object' ? (product.name[itemData.language] || product.name.us) : product.name,
+                description: typeof product.description === 'object' ? (product.description[itemData.language] || product.description.us) : product.description,
+                price: itemData.language === 'vi' ?
+                    `${typeof product.price === 'object' ? product.price.vnd.toLocaleString() : (product.price * 25000).toLocaleString()}đ` :
+                    `$${typeof product.price === 'object' ? product.price.usd : product.price}`,
+                image: product.image,
+                rating: product.rating,
+                language: itemData.language
+            };
+
+            // Thêm sản phẩm vào giỏ hàng
+            addToCart(productData);
+        }
+    });
 });
 
 // Hàm cập nhật thông tin chi tiết món ăn
@@ -259,3 +323,90 @@ $('head').append(`
         }
     </style>
 `);
+
+// Hàm hiển thị sản phẩm tương tự
+function displayRelatedProducts(currentItem, menuData) {
+    // Xác định danh mục của sản phẩm hiện tại
+    const category = currentItem.category;
+    const categoryKey = getCategoryKey(category);
+
+    if (!menuData[categoryKey]) return;
+
+    // Lấy tất cả sản phẩm trong cùng danh mục
+    const categoryProducts = menuData[categoryKey];
+
+    // Tìm sản phẩm hiện tại trong danh sách
+    const currentProductName = currentItem.name;
+    // Lọc ra các sản phẩm khác trong cùng danh mục
+    let otherProducts = categoryProducts.filter(product => {
+        const productName = typeof product.name === 'object' ?
+            (product.name[currentItem.language] || product.name.us) : product.name;
+        return productName !== currentProductName;
+    });
+
+    // Chọn ngẫu nhiên 3 sản phẩm (hoặc ít hơn nếu không đủ)
+    const relatedProducts = getRandomItems(otherProducts, 3);
+
+    // Hiển thị sản phẩm tương tự
+    const relatedProductsGrid = $('.related-products-grid');
+    relatedProductsGrid.empty();
+
+    relatedProducts.forEach(product => {
+        const productName = typeof product.name === 'object' ?
+            (product.name[currentItem.language] || product.name.us) : product.name;
+
+        const productPrice = currentItem.language === 'vi' ?
+            `${typeof product.price === 'object' ? product.price.vnd.toLocaleString() : (product.price * 25000).toLocaleString()}đ` :
+            `$${typeof product.price === 'object' ? product.price.usd : product.price}`;
+
+        const buttonText = currentItem.language === 'vi' ? 'THÊM VÀO GIỎ HÀNG' : 'ADD TO CART';
+
+        const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+
+        const productHtml = `
+            <div class="related-product" data-id="${product.id}">
+                <img src="${product.image}" alt="${productName}" class="related-product-image">
+                <div class="related-product-name">${productName}</div>
+                <div class="related-product-price">${productPrice}</div>
+                <div class="related-product-rating">${stars}</div>
+                <button class="related-product-button">${buttonText}</button>
+            </div>
+        `;
+
+        relatedProductsGrid.append(productHtml);
+    });
+
+    // Cập nhật tiêu đề phần sản phẩm tương tự
+    const relatedTitle = currentItem.language === 'vi' ? 'Sản phẩm tương tự' : 'Related Products';
+    $('.related-products h2').text(relatedTitle);
+}
+
+// Hàm lấy ngẫu nhiên n phần tử từ một mảng
+function getRandomItems(array, n) {
+    // Sao chép mảng để không thay đổi mảng gốc
+    const shuffled = [...array];
+
+    // Nếu số lượng yêu cầu lớn hơn số phần tử có sẵn
+    if (n >= shuffled.length) return shuffled;
+
+    // Xáo trộn mảng (Fisher-Yates algorithm)
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    // Trả về n phần tử đầu tiên
+    return shuffled.slice(0, n);
+}
+
+// Hàm chuyển đổi từ id danh mục sang key trong menuData
+function getCategoryKey(category) {
+    const categoryMap = {
+        'appetizers': 'appetizers',
+        'main-courses': 'mainCourses',
+        'drinks': 'drinks',
+        'dessert': 'dessert'
+    };
+
+    return categoryMap[category] || 'mainCourses'; // Mặc định là mainCourses nếu không tìm thấy
+}
