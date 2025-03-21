@@ -835,17 +835,17 @@ $(document).ready(function () {
 
         return `
             <div class="menu-item">
-                <div class="menu-item-image">
+                <div class="menu-item-image item-clickable">
                     <img src="${item.image}" alt="${name}">
                     <div class="menu-item-price">${price}</div>
                 </div>
                 
-                <h4 class="menu-item-name">${name}</h4>
+                <h4 class="menu-item-name item-clickable">${name}</h4>
                 <p class="menu-item-description">${description}</p>
                 
                 <div class="menu-item-footer">
                     <div class="menu-item-actions">
-                        <button class="action-btn">
+                        <button class="action-btn view-details-btn">
                             <i class="fa-solid fa-circle-exclamation"></i>
                         </button>
                         <button class="action-btn">
@@ -1388,4 +1388,32 @@ $(document).ready(function () {
 
     // Kích hoạt tab từ URL khi trang đã tải xong
     activateTabFromURL();
+
+    // Xử lý khi click vào hình ảnh hoặc tên món ăn để xem chi tiết
+    $(document).on('click', '.item-clickable, .view-details-btn', function () {
+        // Tìm phần tử menu-item gần nhất
+        const menuItem = $(this).closest('.menu-item');
+
+        // Lấy thông tin món ăn
+        const itemName = menuItem.find('.menu-item-name').text();
+        const itemDescription = menuItem.find('.menu-item-description').text();
+        const itemPrice = menuItem.find('.menu-item-price').text();
+        const itemImage = menuItem.find('img').attr('src');
+        const itemRating = menuItem.find('.menu-item-rating').text().trim().length / 2; // Đếm số sao
+
+        // Lưu thông tin vào localStorage
+        const itemData = {
+            name: itemName,
+            description: itemDescription,
+            price: itemPrice,
+            image: itemImage,
+            rating: itemRating,
+            language: currentLanguage
+        };
+
+        localStorage.setItem('selectedItem', JSON.stringify(itemData));
+
+        // Chuyển hướng đến trang chi tiết món ăn
+        window.location.href = '../item-details/item-details.html';
+    });
 });
