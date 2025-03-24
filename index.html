@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Amor Huy Anh - Mexican Inspired Cuisine</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!-- Top bar with hours -->
     <div class="top-bar">
@@ -25,33 +29,38 @@
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="container">
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <div class="nav-left">
                 <a href="menu/menu.html">Menu</a>
                 <a href="events/events.html">Events</a>
                 <a href="about/about.html">About Us</a>
             </div>
-            
+
             <div class="logo">
                 <a href="./index.html">
                     <h1>EL AMOR HUY ANH</h1>
                     <span>Restaurant</span>
                 </a>
             </div>
-            
+
             <div class="nav-right">
                 <a href="reservation/reservation.html">Reservation</a>
                 <a href="payment/payment.html">Orders</a>
                 <a href="contact/contact.html">Contact Us</a>
             </div>
-            
-            <div class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </nav>
-    
+
     <!-- Mobile Menu (Hidden by default) -->
     <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
         <a href="menu/menu.html">Menu</a>
         <a href="events/events.html">Events</a>
         <a href="about/about.html">About Us</a>
@@ -59,18 +68,23 @@
         <a href="payment/payment.html">Orders</a>
         <a href="contact/contact.html">Contact Us</a>
     </div>
+    <div class="menu-overlay"></div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <p class="subtitle">FRESH INGREDIENTS SOURCED GLOBALLY</p>
             <h2 class="title">MEXICAN INSPIRED CUISINE</h2>
-            
+
             <div class="hero-image">
                 <div class="carousel-container">
                     <div class="carousel-track">
                         <div class="carousel-slide">
+<<<<<<< HEAD
                             <img src="images/menu/mainCourses/Fajitas.jpg" alt="Delicious tacos with fresh ingredients">
+=======
+                            <img src="images/main dish/Pozole.jpg" alt="Delicious tacos with fresh ingredients">
+>>>>>>> b6f513c4bdfe572c693a0acdfed8b8f861698dea
                         </div>
                         <div class="carousel-slide">
                             <img src="images/main-dish/Quesadilla.jpg" alt="Authentic Mexican cuisine">
@@ -82,7 +96,7 @@
                     <!-- <div class="carousel-dots"></div> -->
                 </div>
             </div>
-            
+
             <div class="cta-buttons">
                 <a href="reservation/reservation.html" class="btn btn-light">RESERVE NOW</a>
                 <a href="contact/contact.html" class="btn btn-dark">CONTACT US</a>
@@ -103,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="category-card" onclick="window.location.href='menu/menu.html?category=main-courses'">
                     <div class="category-image">
                         <img src="images/home/main-courses.png" alt="Main Courses">
@@ -112,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="category-card" onclick="window.location.href='menu/menu.html?category=drinks'">
                     <div class="category-image">
                         <img src="images/home/drinks.png" alt="Drinks">
@@ -121,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="category-card" onclick="window.location.href='menu/menu.html?category=dessert'">
                     <div class="category-image">
                         <img src="images/home/dessert.png" alt="Dessert">
@@ -138,7 +152,7 @@
     <section class="chef-recommendation">
         <div class="container">
             <h2 class="section-title">Chef's Recommendations</h2>
-            
+
             <div class="recommendation-carousel">
                 <div class="recommendation-track">
                     <!-- Món ăn 1 -->
@@ -157,12 +171,17 @@
                                 </div>
                                 <div class="price">$24</div>
                                 <p class="description">
-                                    Creamy Arborio rice infused with the rich flavors of wild mushrooms, white wine, and Parmesan. Our chef's selection of premium wild mushrooms adds an earthy depth to this classic Italian dish, while the slow-cooking process ensures each grain of rice delivers a perfect al dente texture. A delightful gourmet experience.
+                                    Creamy Arborio rice infused with the rich flavors of wild mushrooms, white wine, and
+                                    Parmesan. Our chef's selection of premium wild mushrooms adds an earthy depth to
+                                    this classic Italian dish, while the slow-cooking process ensures each grain of rice
+                                    delivers a perfect al dente texture. A delightful gourmet experience.
                                 </p>
                                 <div class="chef-signature">Chef Maria</div>
                                 <div class="recommendation-buttons">
-                                    <button class="btn btn-light btn-rounded" onclick="window.location.href='menu/menu.html'">BUY NOW</button>
-                                    <button class="btn btn-outline btn-rounded" onclick="window.location.href='menu/menu.html'">LEARN MORE</button>
+                                    <button class="btn btn-light btn-rounded"
+                                        onclick="window.location.href='menu/menu.html'">BUY NOW</button>
+                                    <button class="btn btn-outline btn-rounded"
+                                        onclick="window.location.href='menu/menu.html'">LEARN MORE</button>
                                 </div>
                             </div>
                             <div class="recommendation-image">
@@ -170,7 +189,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Món ăn 2 -->
                     <div class="recommendation-slide">
                         <div class="recommendation-content">
@@ -187,12 +206,17 @@
                                 </div>
                                 <div class="price">$2.75</div>
                                 <p class="description">
-                                    Grilled corn on the cob slathered in butter and mayonnaise, then generously sprinkled with crumbled Cotija cheese and dusted with chili powder. Finished off with a squeeze of fresh lime juice, this classic street snack offers a perfect blend of creamy, tangy, and spicy flavors.
+                                    Grilled corn on the cob slathered in butter and mayonnaise, then generously
+                                    sprinkled with crumbled Cotija cheese and dusted with chili powder. Finished off
+                                    with a squeeze of fresh lime juice, this classic street snack offers a perfect blend
+                                    of creamy, tangy, and spicy flavors.
                                 </p>
                                 <div class="chef-signature">Chef Carlos</div>
                                 <div class="recommendation-buttons">
-                                    <button class="btn btn-light btn-rounded" onclick="window.location.href='menu/menu.html'">BUY NOW</button>
-                                    <button class="btn btn-outline btn-rounded" onclick="window.location.href='menu/menu.html'">LEARN MORE</button>
+                                    <button class="btn btn-light btn-rounded"
+                                        onclick="window.location.href='menu/menu.html'">BUY NOW</button>
+                                    <button class="btn btn-outline btn-rounded"
+                                        onclick="window.location.href='menu/menu.html'">LEARN MORE</button>
                                 </div>
                             </div>
                             <div class="recommendation-image">
@@ -200,7 +224,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Món ăn 3 -->
                     <div class="recommendation-slide">
                         <div class="recommendation-content">
@@ -217,12 +241,16 @@
                                 </div>
                                 <div class="price">$3.15</div>
                                 <p class="description">
-                                    Lightly crispy grilled tortilla, filled with melted and pulled cheese, mixed with soft, fragrant chicken or beef, moderately salty. Served with sour and sour fresh tomato salsa, perfectly balancing the taste.
+                                    Lightly crispy grilled tortilla, filled with melted and pulled cheese, mixed with
+                                    soft, fragrant chicken or beef, moderately salty. Served with sour and sour fresh
+                                    tomato salsa, perfectly balancing the taste.
                                 </p>
                                 <div class="chef-signature">Chef Elena</div>
                                 <div class="recommendation-buttons">
-                                    <button class="btn btn-light btn-rounded" onclick="window.location.href='menu/menu.html'">BUY NOW</button>
-                                    <button class="btn btn-outline btn-rounded" onclick="window.location.href='menu/menu.html'">LEARN MORE</button>
+                                    <button class="btn btn-light btn-rounded"
+                                        onclick="window.location.href='menu/menu.html'">BUY NOW</button>
+                                    <button class="btn btn-outline btn-rounded"
+                                        onclick="window.location.href='menu/menu.html'">LEARN MORE</button>
                                 </div>
                             </div>
                             <div class="recommendation-image">
@@ -231,7 +259,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Nút điều hướng -->
                 <div class="recommendation-nav">
                     <div class="recommendation-dots"></div>
@@ -245,11 +273,12 @@
         <div class="container">
             <h2 class="section-title gold">Up Coming Event</h2>
             <div class="event-banner">
-                <video src="images/home/video.mp4" alt="Event venue" autoplay muted loop style="width: 100%; height: auto;"></video>
+                <video src="images/home/video.mp4" alt="Event venue" autoplay muted loop
+                    style="width: 100%; height: auto;"></video>
                 <div class="event-overlay">
                     <h3>AÑO NUEVO</h3>
                     <p>A Culinary Countdown To The New Year!</p>
-                    
+
                     <!-- Countdown Timer -->
                     <div class="countdown">
                         <div class="countdown-item">
@@ -269,8 +298,9 @@
                             <div class="countdown-label">SECONDS</div>
                         </div>
                     </div>
-                    
-                    <button class="btn btn-dark btn-border" onclick="window.location.href='reservation/reservation.html'">RESERVE NOW</button>
+
+                    <button class="btn btn-dark btn-border"
+                        onclick="window.location.href='reservation/reservation.html'">RESERVE NOW</button>
                 </div>
             </div>
         </div>
@@ -292,8 +322,10 @@
             <!-- Restaurant Description -->
             <div class="restaurant-description">
                 <p>
-                    Discover the vibrant flavors of Mexico right here in Vietnam at El Amor Huy Anh. We are dedicated to providing an
-                    authentic dining experience with our carefully crafted dishes made from the freshest ingredients. Join us for a culinary
+                    Discover the vibrant flavors of Mexico right here in Vietnam at El Amor Huy Anh. We are dedicated to
+                    providing an
+                    authentic dining experience with our carefully crafted dishes made from the freshest ingredients.
+                    Join us for a culinary
                     adventure that celebrates the rich traditions of Mexican cuisine. We look forward to welcoming you!
                 </p>
             </div>
@@ -325,11 +357,13 @@
             </div>
         </div>
     </footer>
-    <script type="text/javascript">window.DocsBotAI=window.DocsBotAI||{},DocsBotAI.init=function(e){return new Promise((t,r)=>{var n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src="https://widget.docsbot.ai/chat.js";let o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o),n.addEventListener("load",()=>{let n;Promise.all([new Promise((t,r)=>{window.DocsBotAI.mount(Object.assign({}, e)).then(t).catch(r)}),(n=function e(t){return new Promise(e=>{if(document.querySelector(t))return e(document.querySelector(t));let r=new MutationObserver(n=>{if(document.querySelector(t))return e(document.querySelector(t)),r.disconnect()});r.observe(document.body,{childList:!0,subtree:!0})})})("#docsbotai-root"),]).then(()=>t()).catch(r)}),n.addEventListener("error",e=>{r(e.message)})})};</script>
+    <script
+        type="text/javascript">window.DocsBotAI = window.DocsBotAI || {}, DocsBotAI.init = function (e) { return new Promise((t, r) => { var n = document.createElement("script"); n.type = "text/javascript", n.async = !0, n.src = "https://widget.docsbot.ai/chat.js"; let o = document.getElementsByTagName("script")[0]; o.parentNode.insertBefore(n, o), n.addEventListener("load", () => { let n; Promise.all([new Promise((t, r) => { window.DocsBotAI.mount(Object.assign({}, e)).then(t).catch(r) }), (n = function e(t) { return new Promise(e => { if (document.querySelector(t)) return e(document.querySelector(t)); let r = new MutationObserver(n => { if (document.querySelector(t)) return e(document.querySelector(t)), r.disconnect() }); r.observe(document.body, { childList: !0, subtree: !0 }) }) })("#docsbotai-root"),]).then(() => t()).catch(r) }), n.addEventListener("error", e => { r(e.message) }) }) };</script>
     <script type="text/javascript">
-    DocsBotAI.init({id: "bHIIU0TrSnYXDcbIEE0g/fQUWlYjnqlTrttz0FErN"});
+        DocsBotAI.init({ id: "bHIIU0TrSnYXDcbIEE0g/fQUWlYjnqlTrttz0FErN" });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

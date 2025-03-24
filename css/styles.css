@@ -22,7 +22,12 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
 }
@@ -157,16 +162,19 @@ img {
     align-items: center;
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
     display: flex;
     gap: 24px;
 }
 
-.nav-left a, .nav-right a {
+.nav-left a,
+.nav-right a {
     font-weight: 500;
 }
 
-.nav-left a:hover, .nav-right a:hover {
+.nav-left a:hover,
+.nav-right a:hover {
     color: var(--gold);
 }
 
@@ -193,12 +201,64 @@ img {
     cursor: pointer;
 }
 
+/* Mobile Menu */
 .mobile-menu {
-    display: none;
+    display: block;
     background-color: var(--primary);
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
     padding: 20px;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.mobile-menu-close {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.mobile-menu a {
+    color: var(--white);
+    font-size: 16px;
+    padding: 10px 0;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu a:hover {
+    color: var(--gold);
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.menu-overlay.active {
+    display: block;
 }
 
 /* Hero Section */
@@ -625,15 +685,16 @@ img {
     .title {
         font-size: 36px;
     }
-    
-    .nav-left, .nav-right {
+
+    .nav-left,
+    .nav-right {
         display: none;
     }
-    
+
     .mobile-menu-toggle {
         display: block;
     }
-    
+
     .logo {
         margin: 0 auto;
     }
@@ -644,47 +705,47 @@ img {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .hours {
         font-size: 12px;
     }
-    
+
     .title {
         font-size: 28px;
     }
-    
+
     .countdown-item {
         width: 50px;
         height: 50px;
     }
-    
+
     .countdown-value {
         font-size: 16px;
     }
-    
+
     .countdown-label {
         font-size: 8px;
     }
-    
+
     .carousel-container {
         max-width: 100%;
     }
-    
+
     .carousel-dot {
         width: 10px;
         height: 10px;
         margin: 0 4px;
     }
-    
+
     .recommendation-content {
         flex-direction: column;
     }
-    
+
     .recommendation-image {
         order: -1;
         margin-bottom: 20px;
     }
-    
+
     .recommendation-image img {
         width: 100%;
         max-height: 300px;
@@ -692,14 +753,17 @@ img {
 }
 
 @media (max-width: 576px) {
-    .cta-buttons, .footer-cta, .recommendation-buttons {
+
+    .cta-buttons,
+    .footer-cta,
+    .recommendation-buttons {
         flex-direction: column;
     }
-    
+
     .countdown {
         gap: 8px;
     }
-    
+
     .countdown-item {
         width: 40px;
         height: 40px;
